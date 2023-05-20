@@ -19,7 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import AddDog from '../Dogs/AddDog';
+// import AddDog from '../Dogs/AddDog';
 import DogsPage from '../Dogs/DogsPage';
 
 
@@ -72,21 +72,21 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
-          <ProtectedRoute
+          <Route
             // shows AboutPage at all times (logged in or not)
             exact
             path="/dogs"
           >
             <DogsPage />
-          </ProtectedRoute>
+          </Route>
 
-          <Route
+          {/* <Route
             // shows AboutPage at all times (logged in or not)
             exact
             path="/addDog"
           >
             <AddDog />
-          </Route>
+          </Route> */}
 
           <Route
             exact
