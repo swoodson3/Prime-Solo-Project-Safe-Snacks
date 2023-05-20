@@ -19,8 +19,12 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import AddDog from '../Dogs/AddDog';
+import DogsPage from '../Dogs/DogsPage';
+
 
 import './App.css';
+import { Add } from '@mui/icons-material';
 
 function App() {
   const dispatch = useDispatch();
@@ -68,6 +72,22 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
+          <ProtectedRoute
+            // shows AboutPage at all times (logged in or not)
+            exact
+            path="/dogs"
+          >
+            <DogsPage />
+          </ProtectedRoute>
+
+          <Route
+            // shows AboutPage at all times (logged in or not)
+            exact
+            path="/addDog"
+          >
+            <AddDog />
+          </Route>
+
           <Route
             exact
             path="/login"
@@ -109,7 +129,7 @@ function App() {
               <LandingPage />
             }
           </Route>
-
+          
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
             <h1>404</h1>
