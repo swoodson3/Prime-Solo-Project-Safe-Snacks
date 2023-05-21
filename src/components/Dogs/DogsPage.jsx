@@ -5,6 +5,8 @@ import axios from 'axios';
 import { Table, TableHead, TableBody, TableRow, TableCell } from '@mui/material';
 import { IconButton } from '@mui/material';
 import { Delete as DeleteIcon } from '@mui/icons-material';
+const luxon = require('luxon');
+const dateTime = luxon.DateTime;
 
 
 
@@ -19,8 +21,6 @@ function DogsPage() {
   const [gender, setGender] = useState('');
   const [notes, setNotes] = useState('');
   
-
-
 
   useEffect(() => {
     console.log('Inside useEffect');
@@ -72,7 +72,7 @@ function DogsPage() {
       });
   };
 
-  const handleCancel = () => {
+  const handleReturn = () => {
     clearForm();
     history.push('/'); // Redirect to the home page
   };
@@ -100,6 +100,14 @@ function DogsPage() {
         });
     }
   };
+
+  function transformDate(date) {
+    let time = dateTime.fromISO(date);
+    let year = `${time.year}`;
+    let slice = year.slice(2);
+    console.log(`${time.month}/${time.day}/${slice}`)
+    return `${time.month}/${time.day}/${slice}`;
+  }
 
 
   return (
@@ -155,7 +163,7 @@ function DogsPage() {
             placeholder="Notes"
           />
           <button type="submit">Add Dog</button>
-          <button type="button" onClick={handleCancel}>Return Home</button>
+          <button type="button" onClick={handleReturn}>Return Home</button>
         </form>
       </div>
 
@@ -177,7 +185,7 @@ function DogsPage() {
         <TableRow key={dog.id}>
           <TableCell>{dog.name}</TableCell>
           <TableCell>{dog.breed}</TableCell>
-          <TableCell>{dog.birthday}</TableCell>
+          <TableCell>{transformDate(dog.birthday)}</TableCell>
           <TableCell>{dog.weight}</TableCell>
           <TableCell>{dog.gender}</TableCell>
           <TableCell>{dog.notes}</TableCell>

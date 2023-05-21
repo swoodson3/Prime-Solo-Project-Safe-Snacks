@@ -1,8 +1,8 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
-const luxon = require('luxon');
-const dateTime = luxon.DateTime;
+// const luxon = require('luxon');
+// const dateTime = luxon.DateTime;
 
 
 // GET route to retrieve dogs
@@ -21,8 +21,8 @@ router.get('/', (req, res) => {
 
 //POST route to create a new dog
 router.post('/', (req, res) => {
-  console.log('newDog')
   const newDog = req.body;
+  console.log('newDog.birthday', newDog.birthday)
   const queryText = `INSERT INTO "dogs" ("user_id", "name", "notes", "breed", "weight", "birthday", "gender")
                     VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"`;
   // const queryValues = 
@@ -32,7 +32,7 @@ router.post('/', (req, res) => {
     newDog.notes,
     newDog.breed,
     newDog.weight,
-    transformDate(newDog.birthday),
+    newDog.birthday,
     newDog.gender
   ])
   .then(() => {
@@ -62,12 +62,13 @@ router.delete('/:id', (req, res) => {
 });
 
 
-function transformDate(date) {
-  let time = dateTime.fromISO(date);
-  let year = `${time.year}`;
-  let slice = year.slice(2);
-  return `${time.month}/${time.day}/${slice}`;
-}
+// function transformDate(date) {
+//   let time = dateTime.fromISO(date);
+//   let year = `${time.year}`;
+//   let slice = year.slice(2);
+//   console.log(`${time.month}/${time.day}/${slice}`)
+//   return `${time.month}/${time.day}/${slice}`;
+// }
 
 module.exports = router;
 
