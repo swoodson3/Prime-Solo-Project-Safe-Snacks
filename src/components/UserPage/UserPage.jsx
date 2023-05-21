@@ -15,8 +15,10 @@ function UserPage() {
 
       {/* Search Bar */}
       <input type="text" placeholder="Search" />
+      <button>Search</button>
 
       {/* Filter Button */}
+      <input type="text" placeholder="Filter" />
       <button>Filter</button>
 
       {/* Add Dog */}

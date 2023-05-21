@@ -13,6 +13,7 @@ CREATE TABLE
 CREATE TABLE
 "dogs" (
 	"id" SERIAL PRIMARY KEY,
+    "name" VARCHAR (80) NOT NULL,
 	"user_id" integer,
 	"notes" VARCHAR (1000) NOT NULL,
 	"breed" VARCHAR (1000) NOT NULL,

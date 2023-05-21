@@ -2,10 +2,12 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
+
 // GET route to retrieve dogs
 router.get('/', (req, res) => {
   const queryText = `SELECT * FROM "dogs" ORDER BY "id" ASC;`;
   pool.query(queryText).then(result => {
+    console.log('Query result:', result.rows);
     res.send(result.rows)
   })
   .catch(error => {
@@ -17,12 +19,13 @@ router.get('/', (req, res) => {
 
 //POST route to create a new dog
 router.post('/', (req, res) => {
-  console.log(req.user.id)
+  console.log('newDog')
   const newDog = req.body;
-  const queryText = `INSERT INTO "dogs" ("user_id", "notes", "breed", "weight", "birthday", "gender")
-                    VALUES ($1, $2, $3, $4, $5, $6)`;
+  const queryText = `INSERT INTO "dogs" ("user_id", "name", "notes", "breed", "weight", "birthday", "gender")
+                    VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"`;
   const queryValues = [
     req.user.id,
+    newDog.name,
     newDog.notes,
     newDog.breed,
     newDog.weight,
@@ -30,7 +33,9 @@ router.post('/', (req, res) => {
     newDog.gender
   ];
   pool.query(queryText, queryValues)
-  .then(() => {res.sendStatus(201) })
+  .then(() => {
+    console.log('New dog added successfully')
+    res.sendStatus(201) })
   .catch((error) => {
     console.log(`Error adding new dog in router`, error);
     res.sendStatus(500);
