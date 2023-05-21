@@ -20,7 +20,7 @@ function DogsPage() {
   const [notes, setNotes] = useState('');
   
 
-  
+
 
   useEffect(() => {
     console.log('Inside useEffect');
@@ -160,7 +160,7 @@ function DogsPage() {
       </div>
 
       {/* Display Dogs */}
-      {dogs && dogs.length > 0 ? (
+      {/* {dogs && dogs.length > 0 ? ( */}
   <Table>
     <TableHead>
       <TableRow>
@@ -193,48 +193,10 @@ function DogsPage() {
       ))}
     </TableBody>
   </Table>
-) : (
-  <p>No dogs found.</p>
-)}
-      {/* {dogs && dogs.length > 0 ? (
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Breed</th>
-        <th>Birthday</th>
-        <th>Weight</th>
-        <th>Gender</th>
-        <th>Notes</th>
-      </tr>
-    </thead>
-    <tbody>
-      {dogs.map((dog) => (
-        <tr key={dog.id}>
-          <td>{dog.name}</td>
-          <td>{dog.breed}</td>
-          <td>{dog.birthday}</td>
-          <td>{dog.weight}</td>
-          <td>{dog.gender}</td>
-          <td>{dog.notes}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-) : (
+{/* ) : (
   <p>No dogs found.</p>
 )} */}
 
-      {/* Temporary Debugging Info */}
-      {/* <div>
-        <h3>Temporary Debugging Info:</h3>
-        <p>Name: {name}</p>
-        <p>Breed: {breed}</p>
-        <p>Birthday: {birthday}</p>
-        <p>Weight: {weight}</p>
-        <p>Gender: {gender}</p>
-        <p>Notes: {notes}</p>
-      </div> */}
     </div>
   );
 }
