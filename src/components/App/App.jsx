@@ -4,6 +4,7 @@ import {
   Redirect,
   Route,
   Switch,
+  Link,
 } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -21,6 +22,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 // import AddDog from '../Dogs/AddDog';
 import DogsPage from '../Dogs/DogsPage';
+import Favorites from '../Favorites/Favorites';
 
 
 import './App.css';
@@ -88,6 +90,11 @@ function App() {
             <AddDog />
           </Route> */}
 
+          <Route exact path="/favorites">
+            <Favorites />
+          </Route>
+        
+
           <Route
             exact
             path="/login"
@@ -129,7 +136,7 @@ function App() {
               <LandingPage />
             }
           </Route>
-          
+
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
             <h1>404</h1>

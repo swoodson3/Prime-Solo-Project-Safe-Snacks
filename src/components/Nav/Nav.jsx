@@ -30,8 +30,11 @@ function Nav() {
             <Link className="navLink" to="/dogs">
               Dogs
             </Link>
-            <Link className="navLink" to="/addDog">
+            {/* <Link className="navLink" to="/addDog">
               Add Dog
+            </Link> */}
+            <Link className="navLink" to="favorites">
+              Favorites
             </Link>
             <Link className="navLink" to="/info">
               Info Page

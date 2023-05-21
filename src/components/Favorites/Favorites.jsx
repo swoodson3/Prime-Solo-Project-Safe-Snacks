@@ -1,14 +1,15 @@
-function favoriteTreats() {
 
-}
+
+function Favorites() {
+
+
 
 
 return (
     <>
-
-    
     </>
 )
+}
 
 
-export default favoriteTreats;
+export default Favorites;
