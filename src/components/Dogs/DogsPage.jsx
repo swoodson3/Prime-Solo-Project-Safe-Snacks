@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { Table, TableHead, TableBody, TableRow, TableCell } from '@mui/material';
+import { IconButton } from '@mui/material';
+import { Delete as DeleteIcon } from '@mui/icons-material';
+
+
 
 function DogsPage() {
   const dispatch = useDispatch();
@@ -13,6 +18,9 @@ function DogsPage() {
   const [weight, setWeight] = useState('');
   const [gender, setGender] = useState('');
   const [notes, setNotes] = useState('');
+  
+
+  
 
   useEffect(() => {
     console.log('Inside useEffect');
@@ -78,6 +86,22 @@ function DogsPage() {
     setNotes('');
   };
 
+
+  const handleDelete = (dogId) => {
+    if (window.confirm('Are you sure you want to delete this dog?')) {
+      axios
+        .delete(`/api/dogs/${dogId}`)
+        .then((result) => {
+          dispatch({ type: 'FETCH_DOGS' });
+        })
+        .catch((error) => {
+          console.log(`Error in DELETE: ${error}`);
+          alert(`Failed to delete dog!`);
+        });
+    }
+  };
+
+
   return (
     <div>
       <h1>Dogs</h1>
@@ -137,19 +161,69 @@ function DogsPage() {
 
       {/* Display Dogs */}
       {dogs && dogs.length > 0 ? (
-        dogs.map((dog) => (
-          <div key={dog.id}>
-            <h4>{dog.name}</h4>
-            <h5>{dog.breed}</h5>
-            <h5>{dog.birthday}</h5>
-            <h5>{dog.weight}</h5>
-            <h5>{dog.gender}</h5>
-            <h5>{dog.notes}</h5>
-          </div>
-        ))
-      ) : (
-        <p>No dogs found.</p>
-      )}
+  <Table>
+    <TableHead>
+      <TableRow>
+        <TableCell>Name</TableCell>
+        <TableCell>Breed</TableCell>
+        <TableCell>Birthday</TableCell>
+        <TableCell>Weight</TableCell>
+        <TableCell>Gender</TableCell>
+        <TableCell>Notes</TableCell>
+      </TableRow>
+    </TableHead>
+    <TableBody>
+      {dogs.map((dog) => (
+        <TableRow key={dog.id}>
+          <TableCell>{dog.name}</TableCell>
+          <TableCell>{dog.breed}</TableCell>
+          <TableCell>{dog.birthday}</TableCell>
+          <TableCell>{dog.weight}</TableCell>
+          <TableCell>{dog.gender}</TableCell>
+          <TableCell>{dog.notes}</TableCell>
+          <TableCell>
+          <IconButton
+            aria-label="Delete"
+            onClick={() => handleDelete(dog.id)}
+          >
+            <DeleteIcon />
+          </IconButton>
+        </TableCell>
+        </TableRow>
+      ))}
+    </TableBody>
+  </Table>
+) : (
+  <p>No dogs found.</p>
+)}
+      {/* {dogs && dogs.length > 0 ? (
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Breed</th>
+        <th>Birthday</th>
+        <th>Weight</th>
+        <th>Gender</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      {dogs.map((dog) => (
+        <tr key={dog.id}>
+          <td>{dog.name}</td>
+          <td>{dog.breed}</td>
+          <td>{dog.birthday}</td>
+          <td>{dog.weight}</td>
+          <td>{dog.gender}</td>
+          <td>{dog.notes}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+) : (
+  <p>No dogs found.</p>
+)} */}
 
       {/* Temporary Debugging Info */}
       {/* <div>

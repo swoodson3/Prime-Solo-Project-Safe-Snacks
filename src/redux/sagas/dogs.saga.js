@@ -1,4 +1,4 @@
-import { put, takeEvery } from 'redux-saga/effects';
+import { put, takeEvery, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
 // Generator function that handles fetching dogs from the server
@@ -26,12 +26,25 @@ function* createDog(action) {
     }
 }
 
+function* deleteDog(action) {
+    try {
+      yield axios.delete(`/api/dogs/${action.payload}`);
+      yield put({ type: 'FETCH_DOGS' });
+    } catch (error) {
+      console.log('Error in deleting dog:', error);
+    }
+  }
+
+
 // Generator function that handles the main flow of the dogs saga
 function* dogsSaga() {
     // Attaching a watcher to the 'FETCH_DOGS' action and calling getDogs generator function when triggered
     yield takeEvery('FETCH_DOGS', getDogs);
     // Attaching a watcher to the 'CREATE_DOG' action and calling createDog generator function when triggered
     yield takeEvery('CREATE_DOG', createDog);
+    yield takeLatest('DELETE_DOG', deleteDog);
 }
+
+
 
 export default dogsSaga;

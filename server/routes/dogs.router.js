@@ -1,6 +1,8 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const luxon = require('luxon');
+const dateTime = luxon.DateTime;
 
 
 // GET route to retrieve dogs
@@ -23,16 +25,16 @@ router.post('/', (req, res) => {
   const newDog = req.body;
   const queryText = `INSERT INTO "dogs" ("user_id", "name", "notes", "breed", "weight", "birthday", "gender")
                     VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"`;
-  const queryValues = [
+  // const queryValues = 
+  pool.query(queryText, [
     req.user.id,
     newDog.name,
     newDog.notes,
     newDog.breed,
     newDog.weight,
-    newDog.birthday,
+    transformDate(newDog.birthday),
     newDog.gender
-  ];
-  pool.query(queryText, queryValues)
+  ])
   .then(() => {
     console.log('New dog added successfully')
     res.sendStatus(201) })
@@ -42,6 +44,30 @@ router.post('/', (req, res) => {
   });
 });
 
+
+router.delete('/:id', (req, res) => {
+  const dogId = req.params.id;
+
+  const query = 'DELETE FROM "dogs" WHERE "id" = $1';
+  const values = [dogId];
+
+  pool.query(query, values)
+    .then(() => {
+      res.sendStatus(204); // Send a 204 No Content response if successful
+    })
+    .catch((error) => {
+      console.log(`Error in DELETE /dogs/${dogId}:`, error);
+      res.sendStatus(500);
+    });
+});
+
+
+function transformDate(date) {
+  let time = dateTime.fromISO(date);
+  let year = `${time.year}`;
+  let slice = year.slice(2);
+  return `${time.month}/${time.day}/${slice}`;
+}
 
 module.exports = router;
 
