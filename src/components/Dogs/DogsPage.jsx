@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { Table, TableHead, TableBody, TableRow, TableCell } from '@mui/material';
-import { IconButton } from '@mui/material';
+import { IconButton, Button } from '@mui/material';
 import { Delete as DeleteIcon } from '@mui/icons-material';
 const luxon = require('luxon');
 const dateTime = luxon.DateTime;
@@ -39,18 +39,6 @@ function DogsPage() {
 
   const handleBirthdayChange = (event) => {
     setBirthday(event.target.value);
-  };
-
-  const convertWeight = () => {
-    if (weightUnit === 'lbs') {
-      // Convert weight from lbs to kg
-      const kgWeight = Number(weight) / 2.205;
-      return kgWeight.toFixed(2);
-    } else {
-      // Convert weight from kg to lbs
-      const lbsWeight = Number(weight) * 2.205;
-      return lbsWeight.toFixed(2);
-    }
   };
 
   const handleWeightChange = (event) => {
@@ -126,45 +114,40 @@ function DogsPage() {
 
   return (
     <div>
-      <h1>Dogs</h1>
-      <nav className="dogsPage">
-        Categories
-        <ul>
-          <li>Small Breeds</li>
-          <li>Medium Breeds</li>
-          <li>Large Breeds</li>
-        </ul>
-      </nav>
-
       {/* Add Dog Form */}
       <div>
-        <h2>Add a Dog</h2>
+        <h1 style={{ textAlign: "center"}}>Add a Dog</h1>
         <form onSubmit={addDog}>
           <input
             type="text"
             value={name}
             onChange={handleNameChange}
             placeholder="Name"
+            style={{ fontSize: '16px', padding: '8px', width: '200px' }}
           />
           <input
             type="text"
             value={breed}
             onChange={handleBreedChange}
             placeholder="Breed"
+            style={{ fontSize: '16px', padding: '8px', width: '200px' }}
           />
           <input
             type="date"
             value={birthday}
             onChange={handleBirthdayChange}
             placeholder="Birthday"
+            style={{ fontSize: '16px', padding: '8px', width: '200px' }}
           />
           <input
             type="number"
             value={weight}
             onChange={handleWeightChange}
             placeholder="Weight"
+            style={{ fontSize: '16px', padding: '8px', width: '200px' }}
           />
-           <select value={gender} onChange={handleGenderChange} placeholder="Gender">
+           <select value={gender} onChange={handleGenderChange} placeholder="Gender"
+           style={{ fontSize: '16px', padding: '8px', width: '200px' }}>
             <option value="">Select Gender</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
@@ -175,9 +158,14 @@ function DogsPage() {
             value={notes}
             onChange={handleNotesChange}
             placeholder="Notes"
+            style={{ fontSize: '16px', padding: '8px', width: '200px' }}
           />
-          <button type="submit">Add Dog</button>
-          <button type="button" onClick={handleReturn}>Return Home</button>
+          <Button variant="contained" style={{ backgroundColor: "#00acb0", color: "#fff",  fontSize: '16px', padding: '5px', width: '200px', marginRight: '10px' }} className="btn">
+              Add Dog
+            </Button> 
+            <Button variant="contained" style={{ backgroundColor: "#00acb0", color: "#fff",  fontSize: '16px', padding: '5px', width: '200px' }} className="btn" onClick={handleReturn}Return Home>
+              Return Home
+            </Button>
         </form>
       </div>
 
@@ -186,24 +174,24 @@ function DogsPage() {
   <Table>
     <TableHead>
       <TableRow>
-        <TableCell>Name</TableCell>
-        <TableCell>Breed</TableCell>
-        <TableCell>Birthday</TableCell>
-        <TableCell>Weight</TableCell>
-        <TableCell>Gender</TableCell>
-        <TableCell>Notes</TableCell>
+        <TableCell style={{ fontSize: '20px', fontWeight: 'bold' }}>Name</TableCell>
+        <TableCell style={{ fontSize: '20px', fontWeight: 'bold' }}>Breed</TableCell>
+        <TableCell style={{ fontSize: '20px', fontWeight: 'bold' }}>Birthday</TableCell>
+        <TableCell style={{ fontSize: '20px', fontWeight: 'bold' }}>Weight</TableCell>
+        <TableCell style={{ fontSize: '20px', fontWeight: 'bold' }}>Gender</TableCell>
+        <TableCell style={{ fontSize: '20px', fontWeight: 'bold' }}>Notes</TableCell>
       </TableRow>
     </TableHead>
     <TableBody>
       {dogs.map((dog) => (
         <TableRow key={dog.id}>
-          <TableCell>{dog.name}</TableCell>
-          <TableCell>{dog.breed}</TableCell>
-          <TableCell>{transformDate(dog.birthday)}</TableCell>
-          <TableCell>{dog.weight}</TableCell>
-          <TableCell>{dog.gender}</TableCell>
-          <TableCell>{dog.notes}</TableCell>
-          <TableCell>
+          <TableCell style={{ fontSize: '20px' }}>{dog.name}</TableCell>
+          <TableCell style={{ fontSize: '20px' }}>{dog.breed}</TableCell>
+          <TableCell style={{ fontSize: '20px' }}>{transformDate(dog.birthday)}</TableCell>
+          <TableCell style={{ fontSize: '20px' }}>{dog.weight}</TableCell>
+          <TableCell style={{ fontSize: '20px' }}>{dog.gender}</TableCell>
+          <TableCell style={{ fontSize: '20px' }}>{dog.notes}</TableCell>
+          <TableCell style={{ fontSize: '20px' }}>
           <IconButton
             aria-label="Delete"
             onClick={() => handleDelete(dog.id)}
