@@ -20,6 +20,8 @@ function DogsPage() {
   const [weight, setWeight] = useState('');
   const [gender, setGender] = useState('');
   const [notes, setNotes] = useState('');
+  const [weightUnit, setWeightUnit] = useState('lbs');
+  
   
 
   useEffect(() => {
@@ -37,6 +39,18 @@ function DogsPage() {
 
   const handleBirthdayChange = (event) => {
     setBirthday(event.target.value);
+  };
+
+  const convertWeight = () => {
+    if (weightUnit === 'lbs') {
+      // Convert weight from lbs to kg
+      const kgWeight = Number(weight) / 2.205;
+      return kgWeight.toFixed(2);
+    } else {
+      // Convert weight from kg to lbs
+      const lbsWeight = Number(weight) * 2.205;
+      return lbsWeight.toFixed(2);
+    }
   };
 
   const handleWeightChange = (event) => {
@@ -150,12 +164,12 @@ function DogsPage() {
             onChange={handleWeightChange}
             placeholder="Weight"
           />
-          <input
-            type="text"
-            value={gender}
-            onChange={handleGenderChange}
-            placeholder="Gender"
-          />
+           <select value={gender} onChange={handleGenderChange} placeholder="Gender">
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
           <input
             type="text"
             value={notes}
