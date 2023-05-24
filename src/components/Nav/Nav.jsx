@@ -27,12 +27,12 @@ function Nav() {
             <Link className="navLink" to="/user">
               Home
             </Link>
-            <Link className="navLink" to="/dogs">
+            {/* <Link className="navLink" to="/dogs">
               Dogs
-            </Link>
-            {/* <Link className="navLink" to="/addDog">
-              Add Dog
             </Link> */}
+            <Link className="navLink" to="/NewDog">
+              New Dog
+            </Link>
             <Link className="navLink" to="favorites">
               Favorites
             </Link>

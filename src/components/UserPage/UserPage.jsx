@@ -40,7 +40,7 @@ function UserPage() {
       {/* Add Dog  */}
       <Grid container spacing={2} justifyContent="center">
         <Grid item>
-          <Link to="/dogs">
+          <Link to="/newDog">
             <Button variant="contained" style={{ backgroundColor: "#00acb0", color: "#fff" }} className="btn">
               Add Dog
             </Button>

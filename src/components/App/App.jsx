@@ -20,8 +20,8 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-// import AddDog from '../Dogs/AddDog';
-import DogsPage from '../Dogs/DogsPage';
+import AddDog from '../Dogs/AddDog';
+// import DogsPage from '../Dogs/AddDog';
 import Favorites from '../Favorites/Favorites';
 
 
@@ -77,9 +77,9 @@ function App() {
           <Route
             // shows AboutPage at all times (logged in or not)
             exact
-            path="/dogs"
+            path="/NewDog"
           >
-            <DogsPage />
+            <AddDog />
           </Route>
 
           {/* <Route
