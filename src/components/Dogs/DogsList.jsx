@@ -11,10 +11,12 @@ function DogsList() {
     const dogs = useSelector((store) => store.dogs);
     const history = useHistory();
 
+    // Fetch dogs data when the component mounts
     useEffect(() => {
         dispatch({ type: 'FETCH_DOGS' });
     }, [dispatch]);
 
+    // Delete dog handler
     const handleDelete = (id) => {
         if (window.confirm('Are you sure you want to delete this dog?')) {
             axios
@@ -40,6 +42,7 @@ function DogsList() {
                     <Grid item key={dog.id} xs={12} sm={6} md={4}>
                         <div>
                             <Typography variant="h4">{dog.name}</Typography>
+                            {/* Link to dog details page */}
                             <Button
                                 component={Link}
                                 to={`/dogs/${dog.id}`}
@@ -54,6 +57,7 @@ function DogsList() {
                             >
                                 View Details
                             </Button>
+                             {/* Delete dog button */}
                             <IconButton
                                 onClick={() => handleDelete(dog.id)}
                                 aria-label="delete"
@@ -66,6 +70,7 @@ function DogsList() {
             </Grid>
             <br />
             <br />
+            {/* Add new dog button */}
             <Button
                 component={Link}
                 to="/NewDog"
