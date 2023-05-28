@@ -21,12 +21,14 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import AddDog from '../Dogs/AddDog';
-// import DogsPage from '../Dogs/AddDog';
-import Favorites from '../Favorites/Favorites';
+import DogsDetail from '../Dogs/DogsDetail';
+import DogsList from '../Dogs/DogsList';
+import EditDog from '../Dogs/EditDog';
+
 
 
 import './App.css';
-import { Add } from '@mui/icons-material';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -82,18 +84,18 @@ function App() {
             <AddDog />
           </Route>
 
-          {/* <Route
-            // shows AboutPage at all times (logged in or not)
-            exact
-            path="/addDog"
-          >
-            <AddDog />
-          </Route> */}
-
-          <Route exact path="/favorites">
-            <Favorites />
+          <Route exact path="/dogsList">
+            <DogsList />
           </Route>
-        
+
+          <Route exact path="/dogs/:id">
+            <DogsDetail />
+          </Route>
+
+          <Route exact path="/dogs/:id/edit">
+            <EditDog/>
+          </Route>
+
 
           <Route
             exact
@@ -136,6 +138,7 @@ function App() {
               <LandingPage />
             }
           </Route>
+
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

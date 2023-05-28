@@ -27,14 +27,14 @@ function Nav() {
             <Link className="navLink" to="/user">
               Home
             </Link>
-            {/* <Link className="navLink" to="/dogs">
-              Dogs
-            </Link> */}
             <Link className="navLink" to="/NewDog">
               New Dog
             </Link>
-            <Link className="navLink" to="favorites">
-              Favorites
+            {/* <Link className="navLink" to="/dogDetails">
+              Dog Details
+            </Link> */}
+            <Link className="navLink" to="/dogsList">
+              Dogs List
             </Link>
             <Link className="navLink" to="/info">
               Info Page

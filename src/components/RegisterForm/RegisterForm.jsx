@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [avatar, setAvatar] = useState(null);
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
 
@@ -16,15 +15,11 @@ function RegisterForm() {
       payload: {
         username: username,
         password: password,
-        avatar: avatar,
       },
     });
   }; // end registerUser
 
-  const handleAvatarChange = (event) => {
-    // Handle the file input change and store the selected avatar image
-    setAvatar(event.target.files[0]);
-  };
+  
 
   return (
     <form className="formPanel" onSubmit={registerUser}>

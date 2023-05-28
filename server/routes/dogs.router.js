@@ -1,8 +1,6 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
-// const luxon = require('luxon');
-// const dateTime = luxon.DateTime;
 
 
 // GET route to retrieve dogs
@@ -17,6 +15,23 @@ router.get('/', (req, res) => {
     res.sendStatus(500);
   })
 });
+
+
+// GET route to fetch a single dog by ID
+router.get('/:id', (req, res) => {
+  const dogId = req.params.id;
+  const queryText = 'SELECT * FROM dogs WHERE id = $1';
+  pool.query(queryText, [dogId])
+    .then((result) => {
+      console.log(result.rows[0]);
+      res.send(result.rows[0]);
+    })
+    .catch((error) => {
+      console.log('Error fetching dog', error);
+      res.sendStatus(500);
+    });
+});
+
 
 
 //POST route to create a new dog
@@ -61,14 +76,6 @@ router.delete('/:id', (req, res) => {
     });
 });
 
-
-// function transformDate(date) {
-//   let time = dateTime.fromISO(date);
-//   let year = `${time.year}`;
-//   let slice = year.slice(2);
-//   console.log(`${time.month}/${time.day}/${slice}`)
-//   return `${time.month}/${time.day}/${slice}`;
-// }
 
 module.exports = router;
 

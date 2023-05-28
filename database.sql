@@ -23,6 +23,7 @@ CREATE TABLE
 	"gender" VARCHAR (1000) NOT NULL
 );
 
+-- stretch goal feature with more than one dog 
 CREATE TABLE
 "dogs_food" (
     "id" SERIAL PRIMARY KEY,
@@ -30,6 +31,7 @@ CREATE TABLE
     "food_id" integer,
     "category_id" integer
 );
+
 
 CREATE TABLE
 "food" (
@@ -39,6 +41,7 @@ CREATE TABLE
     "notes" VARCHAR (1000) NOT NULL
 );
 
+-- stretch goal 
 CREATE TABLE
 "category" (
     "id" SERIAL PRIMARY KEY,

@@ -7,6 +7,7 @@ const pool = require('../modules/pool');
 const userStrategy = require('../strategies/user.strategy');
 
 
+
 const router = express.Router();
 
 // Handles Ajax request for user information if user is authenticated
@@ -21,12 +22,12 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 router.post('/register', (req, res, next) => {
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
-  const avatar = req.body.avatar;
+ 
 
   const queryText = `INSERT INTO "user" (username, password, avatar)
     VALUES ($1, $2, $3) RETURNING id`;
   pool
-    .query(queryText, [username, password, avatar])
+    .query(queryText, [username, password])
     .then(() => res.sendStatus(201))
     .catch((err) => {
       console.log('User registration failed: ', err);

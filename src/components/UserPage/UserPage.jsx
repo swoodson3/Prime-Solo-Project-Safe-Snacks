@@ -19,20 +19,20 @@ function UserPage() {
       <p>Your ID is: {user.id}</p>
 
       <h1 style={{ textAlign: "center" }}> Important Safety Information for Dogs</h1>
-      <div style={{ marginBottom: "1rem", textAlign: "center" }}>
-        <Typography>
+      <div style={{ marginBottom: "1rem", textAlign: "center", }}>
+        <Typography style={{ fontSize: "18px" }}>
           <LocalCafeIcon /> Xylitol, a common sugar substitute found in various products like gum and peanut butter, can cause a rapid drop in blood sugar levels and liver damage, making it unsafe for dogs.
         </Typography>
-        <Typography>
+        <Typography style={{ fontSize: "18px" }}>
           <LocalFloristIcon /> Certain plants such as lilies, azaleas, tulips, daffodils, and some ferns are toxic to dogs and can result in gastrointestinal problems, organ damage, or even be fatal if ingested.
         </Typography>
-        <Typography>
+        <Typography style={{ fontSize: "18px" }}>
           <FavoriteIcon /> Grapes and raisins can cause kidney failure in dogs, leading to symptoms like vomiting, diarrhea, decreased appetite, and potentially life-threatening complications.
         </Typography>
-        <Typography>
+        <Typography style={{ fontSize: "18px" }}>
           <EmojiFoodBeverageIcon /> Onions, garlic, chives, and other Allium family members are harmful to dogs as they can damage red blood cells and cause anemia or other health complications.
         </Typography>
-        <Typography>
+        <Typography style={{ fontSize: "18px" }}>
           <WarningIcon /> Dogs should avoid chocolate and caffeine due to their toxicity, which can lead to severe health issues or death.
         </Typography>
       </div>
