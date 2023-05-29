@@ -33,4 +33,36 @@ router.get('/:id', (req, res) => {
     });
 });
 
+router.post('/', (req, res) => {
+    const { name, details, symptoms } = req.body;
+    const queryText = `INSERT INTO "dangerous_foods" ("name", "details", "symptoms") 
+                       VALUES ($1, $2, $3);`
+    const values = [name, details, symptoms];
+    pool
+    .query(queryText, values)
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log('Error adding dangerous food:', error);
+      res.sendStatus(500);
+    });
+})
+
+router.delete('/:id', (req, res) => {
+    const foodId = req.params.id;
+  
+    const query = 'DELETE FROM "dangerous_foods" WHERE "id" = $1';
+    const values = [foodId];
+  
+    pool.query(query, values)
+      .then(() => {
+        res.sendStatus(204); // Send a 204 No Content response if successful
+      })
+      .catch((error) => {
+        console.log(`Error in DELETE /dangerousfoods/${foodId}:`, error);
+        res.sendStatus(500);
+      });
+  });
+
 module.exports = router;

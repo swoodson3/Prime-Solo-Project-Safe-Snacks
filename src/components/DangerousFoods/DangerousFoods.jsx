@@ -11,6 +11,8 @@ import {
     Card,
     CardContent,
     Button,
+    TextField,
+    Box
 } from '@mui/material';
 import { Delete as DeleteIcon, ExpandMore as ExpandMoreIcon, ExpandLess as ExpandLessIcon } from '@mui/icons-material';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
@@ -22,6 +24,9 @@ const DangerousFoods = () => {
     const dispatch = useDispatch();
     const dangerousFoods = useSelector((store) => store.dangerousfoods);
     const [specificFoodId, setSpecificFoodId] = useState(null);
+    const [newFoodName, setNewFoodName] = useState('');
+    const [newFoodDetails, setNewFoodDetails] = useState('');
+    const [newFoodSymptoms, setNewFoodSymptoms] = useState('');
 
     useEffect(() => {
         fetchDangerousFoods();
@@ -57,14 +62,69 @@ const DangerousFoods = () => {
         }
     };
 
+    const addDangerousFood = () => {
+        const newFood = {
+            name: newFoodName,
+            details: newFoodDetails,
+            symptoms: newFoodSymptoms,
+        };
+        axios.post('/api/dangerousfoods', newFood)
+            .then(() => {
+                fetchDangerousFoods();
+                setNewFoodName('');
+                setNewFoodDetails('');
+                setNewFoodSymptoms('');
+            }).catch((error) => {
+                console.log('Error adding dangerous foods:', error)
+            })
+    }
 
 
-      
+
+
     return (
         <div>
             <h1 style={{ textAlign: 'center' }} >
                 Dangerous Foods
             </h1>
+            <Box display="flex" alignItems="center" justifyContent="center" marginBottom="20px">
+
+            {/* <form onSubmit={addDangerousFood}> */}
+                <TextField
+                    label="Food Name"
+                    value={newFoodName}
+                    onChange={(e) => setNewFoodName(e.target.value)}
+                    style={{ fontSize: '16px', padding: '8px', width: '200px' }}
+                    required
+                />
+                <TextField
+                    label="Food Details"
+                    value={newFoodDetails}
+                    onChange={(e) => setNewFoodDetails(e.target.value)}
+                    style={{ fontSize: '16px', padding: '8px', width: '200px' }}
+                    required
+                />
+                <TextField
+                    label="Food Symptoms"
+                    value={newFoodSymptoms}
+                    onChange={(e) => setNewFoodSymptoms(e.target.value)}
+                    style={{ fontSize: '16px', padding: '8px', width: '200px' }}
+                    required
+                />
+                <Button type="submit" variant="contained"
+                    style={{
+                        backgroundColor: "#00acb0",
+                        color: "#fff",
+                        fontSize: '16px',
+                        padding: '5px',
+                        width: '200px',
+                        marginRight: '10px',
+                        height: '50px'
+                    }}
+                    onClick={addDangerousFood}>
+                    Add Food
+                </Button>
+            </Box>
             <List>
                 {dangerousFoods.map((food) => (
                     <List key={food.id} >
@@ -104,7 +164,7 @@ const DangerousFoods = () => {
                 ))}
             </List>
         </div>
-        
+
     );
 };
 

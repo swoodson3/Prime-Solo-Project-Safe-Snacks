@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import { Button } from '@mui/material';
+import { Button, TextField, MenuItem} from '@mui/material';
 
 const AddDog = () => {
   const dispatch = useDispatch();
@@ -84,48 +84,58 @@ const AddDog = () => {
     <div>
       <h1 style={{ textAlign: "center"}}>Add a Dog</h1>
       <form onSubmit={addDog}>
-        <input
+        <TextField
           type="text"
+          label="Name"
           value={name}
           onChange={handleNameChange}
-          placeholder="Name"
           style={{ fontSize: '16px', padding: '8px', width: '200px' }}
+          required
         />
-        <input
+        <TextField
           type="text"
+          label="Breed"
           value={breed}
           onChange={handleBreedChange}
-          placeholder="Breed"
+          
           style={{ fontSize: '16px', padding: '8px', width: '200px' }}
+          required
         />
-        <input
+        <TextField
           type="date"
+          label="Birthday"
           value={birthday}
           onChange={handleBirthdayChange}
-          placeholder="Birthday"
           style={{ fontSize: '16px', padding: '8px', width: '200px' }}
+          required
         />
-        <input
+        <TextField
           type="number"
+          label="Weight"
           value={weight}
           onChange={handleWeightChange}
-          placeholder="Weight"
           style={{ fontSize: '16px', padding: '8px', width: '200px' }}
+          required
         />
-        <select value={gender} onChange={handleGenderChange} placeholder="Gender"
+        <TextField
+          select 
+          label="Gender"
+          value={gender} 
+          onChange={handleGenderChange} 
           style={{ fontSize: '16px', padding: '8px', width: '200px' }}
+          required
         >
-          <option value="">Select Gender</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Other">Other</option>
-        </select>
-        <input
+          <MenuItem value="Male">Male</MenuItem>
+          <MenuItem value="Female">Female</MenuItem>
+          <MenuItem value="Other">Other</MenuItem>
+        </TextField>
+        <TextField
           type="text"
+          label="Notes"
           value={notes}
           onChange={handleNotesChange}
-          placeholder="Notes"
           style={{ fontSize: '16px', padding: '8px', width: '200px' }}
+          required
         />
         <Button
           type="submit"

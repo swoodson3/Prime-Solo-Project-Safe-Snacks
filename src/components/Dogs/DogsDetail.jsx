@@ -60,28 +60,28 @@ function DogsDetail() {
                     </TableHead>
                     <TableBody>
                         <TableRow>
-                            <TableCell>Name</TableCell>
-                            <TableCell>{dog.name}</TableCell>
+                            <TableCell style={{ fontSize: '20px' }}>Name</TableCell>
+                            <TableCell style={{ fontSize: '20px' }}>{dog.name}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Breed</TableCell>
-                            <TableCell>{dog.breed}</TableCell>
+                            <TableCell style={{ fontSize: '20px' }}>Breed</TableCell>
+                            <TableCell style={{ fontSize: '20px' }}>{dog.breed}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Birthday</TableCell>
-                            <TableCell>{transformDate(dog.birthday)}</TableCell>
+                            <TableCell style={{ fontSize: '20px' }}>Birthday</TableCell>
+                            <TableCell style={{ fontSize: '20px' }}>{transformDate(dog.birthday)}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Weight</TableCell>
-                            <TableCell>{dog.weight}</TableCell>
+                            <TableCell style={{ fontSize: '20px' }}>Weight</TableCell>
+                            <TableCell style={{ fontSize: '20px' }}>{dog.weight}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Gender</TableCell>
-                            <TableCell>{dog.gender}</TableCell>
+                            <TableCell style={{ fontSize: '20px' }}>Gender</TableCell>
+                            <TableCell style={{ fontSize: '20px' }}>{dog.gender}</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell>Notes</TableCell>
-                            <TableCell>{dog.notes}</TableCell>
+                            <TableCell style={{ fontSize: '20px' }}>Notes</TableCell>
+                            <TableCell style={{ fontSize: '20px' }}>{dog.notes}</TableCell>
                         </TableRow>
                     </TableBody>
                 </Table>
