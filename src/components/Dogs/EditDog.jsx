@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { Button } from '@mui/material';
-// const luxon = require('luxon');
-// const dateTime = luxon.DateTime;
+
+
+
+
 
 const EditDog = () => {
     const dispatch = useDispatch();
@@ -58,6 +60,7 @@ const EditDog = () => {
         setBreed(event.target.value);
     };
 
+   
     const handleBirthdayChange = event => {
         setBirthday(event.target.value);
     };
@@ -88,7 +91,7 @@ const EditDog = () => {
             })
             .then(result => {
                 dispatch({ type: 'FETCH_DOGS' });
-                history.push('/dogsList'); // Redirect to the dogs list page
+                history.push(`/dogs/${id}`); // Redirect to the dogs details page
             })
             .catch(error => {
                 console.log(`Error in PUT: ${error}`);
@@ -96,66 +99,65 @@ const EditDog = () => {
             });
     };
 
-    //   function transformDate(date) {
-    //     let time = dateTime.fromISO(date);
-    //     let year = `${time.year}`;
-    //     let slice = year.slice(2);
-    //     return `${time.month}/${time.day}/${slice}`;
-    //   }
+    
+
+    
 
 
-    return (
-        <div>
-            <h1 style={{ textAlign: 'center' }}>Edit Dog</h1>
-            <form onSubmit={updateDog}>
-                {/* Input fields for dog details */}
-                <input
-                    type="text"
-                    value={name}
-                    onChange={handleNameChange}
-                    placeholder="Name"
-                    style={{ fontSize: '16px', padding: '8px', width: '200px' }}
-                />
-                <input
-                    type="text"
-                    value={breed}
-                    onChange={handleBreedChange}
-                    placeholder="Breed"
-                    style={{ fontSize: '16px', padding: '8px', width: '200px' }}
-                />
-                <input
-                    type="date"
-                    value={birthday}
-                    onChange={handleBirthdayChange}
-                    placeholder="Birthday"
-                    style={{ fontSize: '16px', padding: '8px', width: '200px' }}
-                />
-                <input
-                    type="number"
-                    value={weight}
-                    onChange={handleWeightChange}
-                    placeholder="Weight"
-                    style={{ fontSize: '16px', padding: '8px', width: '200px' }}
-                />
-                <select value={gender} onChange={handleGenderChange} placeholder="Gender"
-                    style={{ fontSize: '16px', padding: '8px', width: '200px' }}
-                >
-                    <option value="">Select Gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
-                </select>
-                <input
-                    type="text"
-                    value={notes}
-                    onChange={handleNotesChange}
-                    placeholder="Notes"
-                    style={{ fontSize: '16px', padding: '8px', width: '200px' }}
-                />
-                <Button type="submit" variant="contained" color="primary">Update Dog</Button>
-            </form>
-        </div>
-    );
-};
+        return (
+            
+            <div>
+                <h1 style={{ textAlign: 'center' }}>Edit Dog</h1>
+                <form onSubmit={updateDog}>
+                    {/* Input fields for dog details */}
+                    <input
+                        type="text"
+                        value={name}
+                        onChange={handleNameChange}
+                        placeholder="Name"
+                        style={{ fontSize: '16px', padding: '8px', width: '200px' }}
+                    />
+                    <input
+                        type="text"
+                        value={breed}
+                        onChange={handleBreedChange}
+                        placeholder="Breed"
+                        style={{ fontSize: '16px', padding: '8px', width: '200px' }}
+                    />
+                    <input
+                        type="date"
+                        value={birthday}
+                        onChange={handleBirthdayChange}
+                        placeholder="Birthday"
+                        style={{ fontSize: '16px', padding: '8px', width: '200px' }}
+                    />
+                    <input
+                        type="number"
+                        value={weight}
+                        onChange={handleWeightChange}
+                        placeholder="Weight"
+                        style={{ fontSize: '16px', padding: '8px', width: '200px' }}
+                    />
+                    <select value={gender} onChange={handleGenderChange} placeholder="Gender"
+                        style={{ fontSize: '16px', padding: '8px', width: '200px' }}
+                    >
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <input
+                        type="text"
+                        value={notes}
+                        onChange={handleNotesChange}
+                        placeholder="Notes"
+                        style={{ fontSize: '16px', padding: '8px', width: '200px' }}
+                    />
+                    <Button type="submit" variant="contained" color="primary">Update Dog</Button>
+                </form>
+            </div>
+        );
+    };
 
-export default EditDog;
+
+    export default EditDog;

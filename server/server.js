@@ -11,7 +11,8 @@ const passport = require('./strategies/user.strategy');
 // Route includes
 const userRouter = require('./routes/user.router');
 const dogsRouter = require('./routes/dogs.router');
-
+const dangerousFoodsRouter = require('./routes/dangerousFoods.router');
+const dangerousPlantsRouter = require('./routes/dangerousPlants.router');
 
 
 // Body parser middleware
@@ -28,6 +29,8 @@ app.use(passport.session());
 /* Routes */
 app.use('/api/user', userRouter);
 app.use('/api/dogs', dogsRouter);
+app.use('/api/dangerousfoods', dangerousFoodsRouter );
+app.use('/api/dangerousplants', dangerousPlantsRouter );
 
 
 

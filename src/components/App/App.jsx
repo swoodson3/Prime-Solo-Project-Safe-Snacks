@@ -24,6 +24,8 @@ import AddDog from '../Dogs/AddDog';
 import DogsDetail from '../Dogs/DogsDetail';
 import DogsList from '../Dogs/DogsList';
 import EditDog from '../Dogs/EditDog';
+import DangerousFoods from '../DangerousFoods/DangerousFoods';
+// import DangerousPlants from '../DangerousPlants/DangerousPlants';
 
 
 
@@ -93,9 +95,14 @@ function App() {
           </Route>
 
           <Route exact path="/dogs/:id/edit">
-            <EditDog/>
+            <EditDog />
           </Route>
 
+          <Router exact path="/dangerousFoods">
+            < DangerousFoods />
+          </Router>
+
+          {/* <DangerousPlants />  */}
 
           <Route
             exact

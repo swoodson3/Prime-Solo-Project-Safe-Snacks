@@ -24,18 +24,19 @@ CREATE TABLE
 );
 
 -- stretch goal feature with more than one dog 
-CREATE TABLE
-"dogs_food" (
-    "id" SERIAL PRIMARY KEY,
-    "dog_id" integer,
-    "food_id" integer,
-    "category_id" integer
-);
+-- CREATE TABLE
+-- "dogs_food" (
+--     "id" SERIAL PRIMARY KEY,
+--     "dog_id" integer,
+--     "food_id" integer,
+--     "category_id" integer
+-- );
 
 
 CREATE TABLE
 "food" (
     "id" SERIAL PRIMARY KEY,
+    "dog_id" integer,
     "description" VARCHAR (1000) NOT NULL,
     "favorite" BOOLEAN NOT NULL,
     "notes" VARCHAR (1000) NOT NULL
