@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
-import { Typography, Button, Grid } from '@mui/material';
+import { Typography, Button, Grid, Box } from '@mui/material';
 import { IconButton } from '@mui/material';
 import { Delete as DeleteIcon } from '@mui/icons-material';
 import axios from 'axios';
@@ -34,63 +34,72 @@ function DogsList() {
 
     return (
         <div>
-            <h1 style={{ textAlign: 'center' }} >
-                Dogs List
-            </h1>
-            <Grid container spacing={2} style={{ textAlign: 'center' }} sx={{ margin: '0 auto' }}  >
-                {dogs.map((dog) => (
-                    <Grid item key={dog.id} xs={12} sm={6} md={4}>
-                        <div>
-                            <Typography variant="h4">{dog.name}</Typography>
-                            {/* Link to dog details page */}
-                            <Button
-                                component={Link}
-                                to={`/dogs/${dog.id}`}
-                                variant="contained"
-                                style={{
-                                    backgroundColor: "#00acb0",
-                                    color: "#fff",
-                                    fontSize: '16px',
-                                    padding: '5px',
-                                    width: '200px'
-                                }}
-                            >
-                                View Details
-                            </Button>
-                             {/* Delete dog button */}
-                            <IconButton
-                                onClick={() => handleDelete(dog.id)}
-                                aria-label="delete"
-                            >
-                                <DeleteIcon />
-                            </IconButton>
-                        </div>
-                    </Grid>
-                ))}
-            </Grid>
-            <br />
-            <br />
-            {/* Add new dog button */}
-            <Button
-                component={Link}
-                to="/NewDog"
-                variant="contained"
-                style={{
-                    backgroundColor: "#00acb0",
-                    color: "#fff",
+      <h1 style={{ textAlign: 'center' }}>Dogs List</h1>
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Grid container spacing={2} sx={{ width: '80%' }}>
+          {dogs.map((dog) => (
+            <Grid item key={dog.id} xs={12} sm={6} md={4}>
+              <Box
+                sx={{
+                  border: '1px solid #ccc',
+                  padding: '10px',
+                  borderRadius: '4px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <Typography variant="h4">{dog.name}</Typography>
+                {/* Link to dog details page */}
+                <Button
+                  component={Link}
+                  to={`/dogs/${dog.id}`}
+                  variant="contained"
+                  style={{
+                    backgroundColor: '#00acb0',
+                    color: '#fff',
                     fontSize: '16px',
                     padding: '5px',
                     width: '200px',
-                    position: 'fixed',
-                    bottom: '60%',
-                    right: '200px',
-                    transform: 'translateY(20%)',
-                }}
-
-            >
-                Add Dog
-            </Button>
-        </div>
+                  }}
+                >
+                  View Details
+                </Button>
+                {/* Delete dog button */}
+                <IconButton
+                  onClick={() => handleDelete(dog.id)}
+                  aria-label="delete"
+                >
+                  <DeleteIcon />
+                </IconButton>
+              </Box>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
+      <br />
+      <br />
+      {/* Add new dog button */}
+      <Button
+        component={Link}
+        to="/NewDog"
+        variant="contained"
+        style={{
+          backgroundColor: '#00acb0',
+          color: '#fff',
+          fontSize: '16px',
+          padding: '5px',
+          width: '200px',
+          position: 'fixed',
+          bottom: '60%',
+          right: '200px',
+          transform: 'translateY(20%)',
+        }}
+      >
+        Add Dog
+      </Button>
+    </div>
     );
 }
 

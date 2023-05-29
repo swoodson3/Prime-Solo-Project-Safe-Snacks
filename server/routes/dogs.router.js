@@ -50,25 +50,6 @@ router.put('/:id', (req, res) => {
 })
 
 
-// router.put('/:id', (req, res) => {
-//   console.log(`In PUT Request /id`)
-//   const dogId = req.params.id;
-//   const { name, breed, birthday, weight, gender, notes } = req.body;
-//   const values = [name, breed, birthday, weight, gender, notes, dogId];
-//   const queryText = `UPDATE "dogs" SET "name" = $1, "breed" = $2, "birthday" = $3, "weight" = $4, "gender" = $5, "notes" = $6
-//   WHERE "id" = $7`
-//   pool
-//     .query(queryText, values)
-//     .then(() => {
-//       res.sendStatus(200);
-//     })
-//     .catch(error => {
-//       console.log('Error updating dog:', error);
-//       res.sendStatus(500);
-//     });
-// });
-
-
 //POST route to create a new dog
 router.post('/', (req, res) => {
   const newDog = req.body;
