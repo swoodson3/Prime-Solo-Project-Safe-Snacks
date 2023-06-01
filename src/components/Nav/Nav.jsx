@@ -36,6 +36,9 @@ function Nav() {
             <Link className="navLink" to="/dangerousFoods">
               Dangerous Foods
             </Link>
+            <Link className="navLink" to="/dangerousPlants">
+              Dangerous Plants
+            </Link>
             <Link className="navLink" to="/info">
               Info Page
             </Link>

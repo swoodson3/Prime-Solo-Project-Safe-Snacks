@@ -1,5 +1,8 @@
 import { all } from 'redux-saga/effects';
+import dangerousfoods from './dangerousfoods.saga';
+import dangerousplants from './dangerousplant.saga.';
 import dogsSaga from './dogs.saga';
+import foodSaga from './food.saga';
 import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
@@ -18,6 +21,9 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     dogsSaga(),
+    dangerousfoods(),
+    dangerousplants(),
+    foodSaga(),
   ]);
 }
 

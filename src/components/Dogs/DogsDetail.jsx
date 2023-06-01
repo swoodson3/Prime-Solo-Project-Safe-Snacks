@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
+import { Favorite } from '@mui/icons-material';
 const luxon = require('luxon');
 const dateTime = luxon.DateTime;
 
@@ -11,14 +12,20 @@ function DogsDetail() {
     const { id } = useParams();
     const dispatch = useDispatch();
     const dogs = useSelector((store) => store.dogs);
+    const food = useSelector((store) => store.food);
     const dog = dogs.find((dog) => dog.id === Number(id));
     const history = useHistory();
+    const [description, setDescription] = useState('');
+    const [favorite, setFavorite] = useState(false);
+    const [notes, setNotes] = useState('');
+
 
 
     // Fetch dogs data when the component mounts
     useEffect(() => {
         dispatch({ type: 'FETCH_DOGS' });
-    }, [dispatch]);
+        dispatch({ type: 'FETCH_FOOD', payload: id })
+    }, []);
 
     // Fetch the dog details if not available in the state
     useEffect(() => {
@@ -50,6 +57,20 @@ function DogsDetail() {
     const handleEdit = () => {
         history.push(`/dogs/${dog.id}/edit`); // Navigate to the edit dog page
     };
+
+    const handleAddFoods = () => {
+        const newFood = {
+          description: description,
+          favorite: favorite,
+          notes: notes,
+        };
+        dispatch({ type: 'ADD_FOOD', payload: newFood });
+        
+        // Clear the form fields
+        setDescription('');
+        setFavorite(false);
+        setNotes('');
+      };
 
     return (
         <div>
@@ -83,12 +104,52 @@ function DogsDetail() {
                             <TableCell style={{ fontSize: '20px' }}>Notes</TableCell>
                             <TableCell style={{ fontSize: '20px' }}>{dog.notes}</TableCell>
                         </TableRow>
+                        {/* <TableRow> */}
+                        {/* <TableCell style={{ fontSize: '20px' }}>Favorite Food</TableCell>
+                            <TableCell style={{ fontSize: '20px' }}>{dog.favorite}</TableCell> Use "food_favorite" */}
+                        {/* </TableRow> */}
+                        {/* <TableRow> */}
+                        {/* <TableCell style={{ fontSize: '20px' }}>Food Description</TableCell>
+                            <TableCell style={{ fontSize: '20px' }}>{dog.description}</TableCell> Use "food_description" */}
+                        {/* </TableRow> */}
                     </TableBody>
                 </Table>
             </TableContainer>
+            <h1 style={{ textAlign: 'center', marginTop: '20px' }}>Foods</h1>
+            <TableContainer component={Paper}>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell style={{ fontSize: '20px' }}>Name</TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell style={{ fontSize: '20px' }}>Description</TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell style={{ fontSize: '20px' }}>Favorite</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {food.map((foodItem) => (
+                            <TableRow key={foodItem.id}>
+                                <TableCell style={{ fontSize: '20px' }}>{dog.name}</TableCell>
+                                <TableCell style={{ fontSize: '20px' }}>{foodItem.description}</TableCell>
+                                <TableCell style={{ fontSize: '20px' }}>{foodItem.favorite}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+            {/* <div>
+                
+                {JSON.stringify(food)}
+            </div> */}
             {/* Button to navigate to the edit dog page */}
             <Button variant="contained" color="primary" onClick={handleEdit}>
                 Edit
+            </Button>
+            <Button variant="contained" color="primary" onClick={handleAddFoods}>
+                Add Foods
             </Button>
         </div>
     );

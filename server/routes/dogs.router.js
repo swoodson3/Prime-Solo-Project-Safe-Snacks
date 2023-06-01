@@ -10,17 +10,18 @@ router.get('/', (req, res) => {
     console.log('Query result:', result.rows);
     res.send(result.rows)
   })
-  .catch(error => {
-    console.log(`Error is GET all dogs, ${error}`)
-    res.sendStatus(500);
-  })
+    .catch(error => {
+      console.log(`Error is GET all dogs, ${error}`)
+      res.sendStatus(500);
+    })
 });
 
 
 // GET route to fetch a single dog by ID
 router.get('/:id', (req, res) => {
   const dogId = req.params.id;
-  const queryText = 'SELECT * FROM dogs WHERE id = $1';
+  const queryText = `SELECT * FROM "dogs" WHERE "id" = $1`;
+
   pool.query(queryText, [dogId])
     .then((result) => {
       console.log(result.rows[0]);
@@ -32,27 +33,34 @@ router.get('/:id', (req, res) => {
     });
 });
 
+// SELECT dogs.*, food.description AS food_description, food.favorite AS food_favorite, food.notes AS food_notes 
+//   FROM "dogs" 
+//   LEFT JOIN food ON dogs.food_id = food.id 
+//   WHERE dogs.id = $1
+
 //PUT route to update a single do by ID
 router.put('/:id', (req, res) => {
-    console.log(`In PUT Request /id`)
-    const dogId = req.params.id;
-    const dogToUpdate = req.body;
-    const values = [dogToUpdate.name, dogToUpdate.breed, dogToUpdate.birthday, dogToUpdate.weight, dogToUpdate.gender, dogToUpdate.notes, dogId ]
-    const sqlText = `UPDATE "dogs" SET "name" = $1, "breed" = $2, "birthday" = $3, "weight" = $4, "gender" = $5, "notes" = $6 WHERE "id" = $7;`
-    pool.query(sqlText, values)
-        .then((result) => {
-            res.sendStatus(200);
-        })
-        .catch((error) => {
-            console.log(`Error in PUT ${error}`);
-            res.sendStatus(500)
-        });
+  console.log(`In PUT Request /id`)
+  const dogId = req.params.id;
+  const dogToUpdate = req.body;
+  const values = [dogToUpdate.name, dogToUpdate.breed, dogToUpdate.birthday, dogToUpdate.weight, dogToUpdate.gender, dogToUpdate.notes, dogId]
+  const sqlText = `UPDATE "dogs" SET "name" = $1, "breed" = $2, "birthday" = $3, "weight" = $4, "gender" = $5, "notes" = $6 WHERE "id" = $7;`
+  pool.query(sqlText, values)
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log(`Error in PUT ${error}`);
+      res.sendStatus(500)
+    });
 })
+
 
 
 //POST route to create a new dog
 router.post('/', (req, res) => {
   const newDog = req.body;
+  console.log(newDog);
   console.log('newDog.birthday', newDog.birthday)
   const queryText = `INSERT INTO "dogs" ("user_id", "name", "notes", "breed", "weight", "birthday", "gender")
                     VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"`;
@@ -66,13 +74,23 @@ router.post('/', (req, res) => {
     newDog.birthday,
     newDog.gender
   ])
-  .then(() => {
-    console.log('New dog added successfully')
-    res.sendStatus(201) })
-  .catch((error) => {
-    console.log(`Error adding new dog in router`, error);
-    res.sendStatus(500);
-  });
+    .then((results) => {
+      const dogId = results.rows[0].id;
+      console.log('New dog added successfully')
+      const foodQuery = `INSERT INTO "food" ("dog_id", "description", "notes", "favorite")
+      VALUES ($1, $2, $3, $4)`;
+      pool.query(foodQuery, [dogId, newDog.description, newDog.notes, newDog.favorite]).then(() => {
+        res.sendStatus(201)
+      }).catch((error) => {
+        console.log(`Error adding new dog in router`, error);
+        res.sendStatus(500);
+      });
+      
+    })
+    .catch((error) => {
+      console.log(`Error adding new dog in router`, error);
+      res.sendStatus(500);
+    });
 });
 
 

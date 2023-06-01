@@ -44,6 +44,7 @@ const DangerousFoods = () => {
     };
 
     const deleteDangerousFood = (id) => {
+        if (window.confirm('Are you sure you want to delete this food?'))
         axios
             .delete(`/api/dangerousfoods/${id}`)
             .then(() => {
@@ -135,7 +136,7 @@ const DangerousFoods = () => {
                                 </ListItemIcon>
                                 <ListItemText
                                     primaryTypographyProps={{
-                                        variant: 'h5',
+                                        variant: 'h9',
                                         fontWeight: 'bold',
                                     }}
                                     primary={food.name} />

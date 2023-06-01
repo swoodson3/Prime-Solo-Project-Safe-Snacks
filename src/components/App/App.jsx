@@ -25,7 +25,7 @@ import DogsDetail from '../Dogs/DogsDetail';
 import DogsList from '../Dogs/DogsList';
 import EditDog from '../Dogs/EditDog';
 import DangerousFoods from '../DangerousFoods/DangerousFoods';
-// import DangerousPlants from '../DangerousPlants/DangerousPlants';
+import DangerousPlants from '../DangerousPlants/DangerousPlants';
 
 
 
@@ -102,7 +102,9 @@ function App() {
             < DangerousFoods />
           </Router>
 
-          {/* <DangerousPlants />  */}
+          <Router exact path="/dangerousPlants">
+            < DangerousPlants />
+          </Router>
 
           <Route
             exact
