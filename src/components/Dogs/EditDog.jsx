@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import axios from 'axios';
-import { Button } from '@mui/material';
-
-
+import { Button, TextField, MenuItem } from '@mui/material';
 
 
 
@@ -22,6 +20,9 @@ const EditDog = () => {
     const [weight, setWeight] = useState('');
     const [gender, setGender] = useState('');
     const [notes, setNotes] = useState('');
+    const [favoriteFood, setFavoriteFood] = useState('');
+    const [foodDescription, setFoodDescription] = useState('');
+
 
     useEffect(() => {
         if (dog) {
@@ -37,7 +38,7 @@ const EditDog = () => {
             axios
                 .get(`/api/dogs/${id}`)
                 .then(response => {
-                    const { name, breed, birthday, weight, gender, notes } = response.data;
+                    const { name, breed, birthday, weight, gender, notes} = response.data;
                     setName(name);
                     setBreed(breed);
                     setBirthday(birthday);
@@ -60,7 +61,7 @@ const EditDog = () => {
         setBreed(event.target.value);
     };
 
-   
+
     const handleBirthdayChange = event => {
         setBirthday(event.target.value);
     };
@@ -77,6 +78,14 @@ const EditDog = () => {
         setNotes(event.target.value);
     };
 
+    const handleFoodDescriptionChange = (event) => {
+        setFoodDescription(event.target.value);
+    };
+
+    const handleFavoriteFoodChange = (event) => {
+        setFavoriteFood(event.target.value);
+    };
+
     // Update the dog details
     const updateDog = event => {
         event.preventDefault();
@@ -87,7 +96,7 @@ const EditDog = () => {
                 birthday,
                 weight,
                 gender,
-                notes
+                notes,
             })
             .then(result => {
                 dispatch({ type: 'FETCH_DOGS' });
@@ -99,65 +108,87 @@ const EditDog = () => {
             });
     };
 
-    
 
-    
+    return (
+
+        <div>
+            <h1 style={{ textAlign: 'center' }}>Edit Dog</h1>
+            <form onSubmit={updateDog}>
+                {/* Input fields for dog details */}
+                <TextField
+          type="text"
+          label="Name"
+          value={name}
+          onChange={handleNameChange}
+          style={{ fontSize: '16px', padding: '8px', width: '200px' }}
+          required
+        />
+        <TextField
+          type="text"
+          label="Breed"
+          value={breed}
+          onChange={handleBreedChange}
+
+          style={{ fontSize: '16px', padding: '8px', width: '200px' }}
+          required
+        />
+        <TextField
+          type="date"
+          label="Birthday"
+          value={birthday}
+          onChange={handleBirthdayChange}
+          style={{ fontSize: '16px', padding: '8px', width: '200px' }}
+          required
+        />
+        <TextField
+          type="number"
+          label="Weight"
+          value={weight}
+          onChange={handleWeightChange}
+          style={{ fontSize: '16px', padding: '8px', width: '200px' }}
+          required
+        />
+        <TextField
+          select
+          label="Gender"
+          value={gender}
+          onChange={handleGenderChange}
+          style={{ fontSize: '16px', padding: '8px', width: '200px' }}
+          required
+        >
+          <MenuItem value="Male">Male</MenuItem>
+          <MenuItem value="Female">Female</MenuItem>
+          <MenuItem value="Other">Other</MenuItem>
+        </TextField>
+        <TextField
+          type="text"
+          label="Food Description"
+          value={foodDescription}
+          onChange={handleFoodDescriptionChange}
+          style={{ fontSize: '16px', padding: '8px', width: '200px' }}
+          required
+        />
+        <TextField
+          type="text"
+          label="Favorite Food"
+          value={favoriteFood}
+          onChange={handleFavoriteFoodChange}
+          style={{ fontSize: '16px', padding: '8px', width: '200px' }}
+          required
+        />
+        <TextField
+          type="text"
+          label="Notes"
+          value={notes}
+          onChange={handleNotesChange}
+          style={{ fontSize: '16px', padding: '8px', width: '200px' }}
+          required
+        />
+                <Button type="submit" variant="contained" color="primary">Update Dog</Button>
+            </form>
+        </div>
+    );
+};
 
 
-        return (
-            
-            <div>
-                <h1 style={{ textAlign: 'center' }}>Edit Dog</h1>
-                <form onSubmit={updateDog}>
-                    {/* Input fields for dog details */}
-                    <input
-                        type="text"
-                        value={name}
-                        onChange={handleNameChange}
-                        placeholder="Name"
-                        style={{ fontSize: '16px', padding: '8px', width: '200px' }}
-                    />
-                    <input
-                        type="text"
-                        value={breed}
-                        onChange={handleBreedChange}
-                        placeholder="Breed"
-                        style={{ fontSize: '16px', padding: '8px', width: '200px' }}
-                    />
-                    <input
-                        type="date"
-                        value={birthday}
-                        onChange={handleBirthdayChange}
-                        placeholder="Birthday"
-                        style={{ fontSize: '16px', padding: '8px', width: '200px' }}
-                    />
-                    <input
-                        type="number"
-                        value={weight}
-                        onChange={handleWeightChange}
-                        placeholder="Weight"
-                        style={{ fontSize: '16px', padding: '8px', width: '200px' }}
-                    />
-                    <select value={gender} onChange={handleGenderChange} placeholder="Gender"
-                        style={{ fontSize: '16px', padding: '8px', width: '200px' }}
-                    >
-                        <option value="">Select Gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Other">Other</option>
-                    </select>
-                    <input
-                        type="text"
-                        value={notes}
-                        onChange={handleNotesChange}
-                        placeholder="Notes"
-                        style={{ fontSize: '16px', padding: '8px', width: '200px' }}
-                    />
-                    <Button type="submit" variant="contained" color="primary">Update Dog</Button>
-                </form>
-            </div>
-        );
-    };
-
-
-    export default EditDog;
+export default EditDog;

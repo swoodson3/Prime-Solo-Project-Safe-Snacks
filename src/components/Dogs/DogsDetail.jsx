@@ -1,10 +1,11 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
 import { Favorite } from '@mui/icons-material';
+import { Typography } from '@mui/material';
 const luxon = require('luxon');
 const dateTime = luxon.DateTime;
 
@@ -18,8 +19,6 @@ function DogsDetail() {
     const [description, setDescription] = useState('');
     const [favorite, setFavorite] = useState(false);
     const [notes, setNotes] = useState('');
-
-
 
     // Fetch dogs data when the component mounts
     useEffect(() => {
@@ -60,17 +59,17 @@ function DogsDetail() {
 
     const handleAddFoods = () => {
         const newFood = {
-          description: description,
-          favorite: favorite,
-          notes: notes,
+            description: description,
+            favorite: favorite,
+            notes: notes,
         };
         dispatch({ type: 'ADD_FOOD', payload: newFood });
-        
+
         // Clear the form fields
         setDescription('');
         setFavorite(false);
         setNotes('');
-      };
+    };
 
     return (
         <div>
@@ -104,14 +103,6 @@ function DogsDetail() {
                             <TableCell style={{ fontSize: '20px' }}>Notes</TableCell>
                             <TableCell style={{ fontSize: '20px' }}>{dog.notes}</TableCell>
                         </TableRow>
-                        {/* <TableRow> */}
-                        {/* <TableCell style={{ fontSize: '20px' }}>Favorite Food</TableCell>
-                            <TableCell style={{ fontSize: '20px' }}>{dog.favorite}</TableCell> Use "food_favorite" */}
-                        {/* </TableRow> */}
-                        {/* <TableRow> */}
-                        {/* <TableCell style={{ fontSize: '20px' }}>Food Description</TableCell>
-                            <TableCell style={{ fontSize: '20px' }}>{dog.description}</TableCell> Use "food_description" */}
-                        {/* </TableRow> */}
                     </TableBody>
                 </Table>
             </TableContainer>
@@ -119,32 +110,29 @@ function DogsDetail() {
             <TableContainer component={Paper}>
                 <Table>
                     <TableHead>
-                        <TableRow>
-                            <TableCell style={{ fontSize: '20px' }}>Name</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell style={{ fontSize: '20px' }}>Description</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell style={{ fontSize: '20px' }}>Favorite</TableCell>
-                        </TableRow>
                     </TableHead>
                     <TableBody>
                         {food.map((foodItem) => (
-                            <TableRow key={foodItem.id}>
-                                <TableCell style={{ fontSize: '20px' }}>{dog.name}</TableCell>
-                                <TableCell style={{ fontSize: '20px' }}>{foodItem.description}</TableCell>
-                                <TableCell style={{ fontSize: '20px' }}>{foodItem.favorite}</TableCell>
-                            </TableRow>
+                            <>
+                                <TableRow>
+                                    <TableCell style={{ fontSize: '20px' }}>Description</TableCell>
+                                    <TableCell style={{ fontSize: '20px' }}>{foodItem.description}</TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell style={{ fontSize: '20px' }}>Favorite</TableCell>
+                                    <TableCell>
+                                        {foodItem.favorite ? (
+                                            <Typography variant="body1" style={{ fontSize: '20px' }}>True</Typography>
+                                        ) : (
+                                            <Typography variant="body1" style={{ fontSize: '20px' }}>False</Typography>
+                                        )}
+                                    </TableCell>
+                                </TableRow>
+                            </>
                         ))}
                     </TableBody>
                 </Table>
             </TableContainer>
-            {/* <div>
-                
-                {JSON.stringify(food)}
-            </div> */}
-            {/* Button to navigate to the edit dog page */}
             <Button variant="contained" color="primary" onClick={handleEdit}>
                 Edit
             </Button>
@@ -153,6 +141,7 @@ function DogsDetail() {
             </Button>
         </div>
     );
-};
+}
 
 export default DogsDetail;
+

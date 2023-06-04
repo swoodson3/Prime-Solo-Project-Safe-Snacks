@@ -33,11 +33,6 @@ router.get('/:id', (req, res) => {
     });
 });
 
-// SELECT dogs.*, food.description AS food_description, food.favorite AS food_favorite, food.notes AS food_notes 
-//   FROM "dogs" 
-//   LEFT JOIN food ON dogs.food_id = food.id 
-//   WHERE dogs.id = $1
-
 //PUT route to update a single do by ID
 router.put('/:id', (req, res) => {
   console.log(`In PUT Request /id`)
@@ -54,7 +49,6 @@ router.put('/:id', (req, res) => {
       res.sendStatus(500)
     });
 })
-
 
 
 //POST route to create a new dog

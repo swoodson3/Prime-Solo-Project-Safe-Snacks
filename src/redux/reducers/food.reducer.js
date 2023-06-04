@@ -7,6 +7,8 @@ const foodReducer = (state = [], action) => {
         return action.payload;
       case 'CREATE_FOOD':
         return [...state, action.payload];
+        case 'ADD_FOOD':
+            return [...state, action.payload];
       default:
         return state;
     }

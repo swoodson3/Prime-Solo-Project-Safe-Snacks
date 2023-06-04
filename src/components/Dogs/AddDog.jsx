@@ -21,8 +21,8 @@ const AddDog = () => {
 
   useEffect(() => {
     console.log('Inside useEffect');
-    dispatch({ type: 'FETCH_DOGS' })
-    dispatch({ type: 'FETCH_FOOD' });
+    // dispatch({ type: 'FETCH_DOGS' })
+    // dispatch({ type: 'FETCH_FOOD' });
   }, [dispatch]);
 
   const handleNameChange = (event) => {
