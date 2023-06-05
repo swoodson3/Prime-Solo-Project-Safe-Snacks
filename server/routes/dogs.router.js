@@ -5,9 +5,12 @@ const router = express.Router();
 
 // GET route to retrieve dogs
 router.get('/', (req, res) => {
-  const queryText = `SELECT * FROM "dogs" ORDER BY "id" ASC;`;
+  const queryText = `SELECT dogs.*, jsonb_agg(food.*) AS food
+  FROM dogs
+  LEFT JOIN food ON dogs.id = food.dog_id
+  GROUP BY dogs.id;`;
   pool.query(queryText).then(result => {
-    console.log('Query result:', result.rows);
+    console.log('GET All Dogs:', result.rows);
     res.send(result.rows)
   })
     .catch(error => {
@@ -20,11 +23,14 @@ router.get('/', (req, res) => {
 // GET route to fetch a single dog by ID
 router.get('/:id', (req, res) => {
   const dogId = req.params.id;
-  const queryText = `SELECT * FROM "dogs" WHERE "id" = $1`;
-
+  const queryText = `SELECT dogs.*, jsonb_agg(food.*) AS food 
+  FROM dogs
+  LEFT JOIN food ON dogs.id = food.dog_id
+  WHERE dogs.id = $1
+  GROUP BY dogs.id;`;
   pool.query(queryText, [dogId])
     .then((result) => {
-      console.log(result.rows[0]);
+      console.log('Charlie', result.rows[0]);
       res.send(result.rows[0]);
     })
     .catch((error) => {
@@ -38,10 +44,20 @@ router.put('/:id', (req, res) => {
   console.log(`In PUT Request /id`)
   const dogId = req.params.id;
   const dogToUpdate = req.body;
+  console.log(dogToUpdate)
   const values = [dogToUpdate.name, dogToUpdate.breed, dogToUpdate.birthday, dogToUpdate.weight, dogToUpdate.gender, dogToUpdate.notes, dogId]
   const sqlText = `UPDATE "dogs" SET "name" = $1, "breed" = $2, "birthday" = $3, "weight" = $4, "gender" = $5, "notes" = $6 WHERE "id" = $7;`
   pool.query(sqlText, values)
     .then((result) => {
+      const values = [dogToUpdate.description, dogToUpdate.favorite, dogId]
+      const sqlText = `INSERT INTO "food" ("description", "favorite", "dog_id") VALUES ($1, $2, $3);`
+      pool.query(sqlText, values)
+        .then((result) => {
+        })
+        .catch((error) => {
+          console.log(`Error in PUT ${error}`);
+          res.sendStatus(500)
+        });
       res.sendStatus(200);
     })
     .catch((error) => {
@@ -49,6 +65,7 @@ router.put('/:id', (req, res) => {
       res.sendStatus(500)
     });
 })
+
 
 
 //POST route to create a new dog

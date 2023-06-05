@@ -4,6 +4,7 @@ import axios from 'axios';
 // Saga to fetch food options
 function* fetchFoodSaga( action ) {
   try {
+    console.log('seth')
     const response = yield axios.get(`/api/food/${action.payload}`);
     yield put({ type: 'SET_FOOD', payload: response.data });
   } catch (error) {

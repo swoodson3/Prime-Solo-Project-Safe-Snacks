@@ -42,7 +42,7 @@ function* dogsSaga() {
     yield takeEvery('FETCH_DOGS', getDogs);
     // Attaching a watcher to the 'CREATE_DOG' action and calling createDog generator function when triggered
     yield takeEvery('CREATE_DOG', createDog);
-    yield takeLatest('DELETE_DOG', deleteDog);
+    yield takeEvery('DELETE_DOG', deleteDog);
 }
 
 

@@ -7,7 +7,7 @@ import './Footer.css';
 // or even care what the redux state is, so it doesn't need 'connect()'
 
 function Footer() {
-  return <footer style={{ position: 'fixed', left: 0, bottom: 0, width: '100%', textAlign: 'center' }}>&copy; 2023 - Safe Snacks by Seth Woodson</footer>;
+  // return <footer style={{ position: 'fixed', left: 0, bottom: 0, width: '100%', textAlign: 'center' }}>&copy; 2023 - Safe Snacks by Seth Woodson</footer>;
 }
 
 export default Footer;

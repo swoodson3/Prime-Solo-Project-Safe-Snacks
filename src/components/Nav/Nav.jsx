@@ -39,9 +39,9 @@ function Nav() {
             <Link className="navLink" to="/dangerousPlants">
               Dangerous Plants
             </Link>
-            <Link className="navLink" to="/info">
+            {/* <Link className="navLink" to="/info">
               Info Page
-            </Link>
+            </Link> */}
 
             <LogOutButton className="navLink" />
           </>

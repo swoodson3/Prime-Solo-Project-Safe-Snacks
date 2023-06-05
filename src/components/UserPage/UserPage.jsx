@@ -15,9 +15,11 @@ function UserPage() {
   return (
     <div className="container">
       <h1 style={{ textAlign: "center" }}> Safe Snacks </h1>
+    <br />
       <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
-
+      {/* <p>Your ID is: {user.id}</p> */}
+    <br />
+    <br />
       <h1 style={{ textAlign: "center" }}> Important Safety Information for Dogs</h1>
       <div style={{ marginBottom: "1rem", textAlign: "center", }}>
         <Typography style={{ fontSize: "18px" }}>
