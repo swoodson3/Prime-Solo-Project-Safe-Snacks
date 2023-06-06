@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, Link } from 'react-router-dom';
 import axios from 'axios';
-import { Button, TextField, MenuItem, Box, } from '@mui/material';
+import { Button, TextField, MenuItem, Box } from '@mui/material';
 
 
 
@@ -142,6 +142,7 @@ const EditDog = () => {
 
         <div>
             <h1 style={{ textAlign: 'center' }}>Edit Dog</h1>
+            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             <form onSubmit={updateDog}>
                 {/* Input fields for dog details */}
                 <TextField
@@ -210,8 +211,7 @@ const EditDog = () => {
                     label="Notes"
                     value={notes}
                     onChange={handleNotesChange}
-                    style={{ fontSize: '16px', padding: '8px', width: '200px' }}
-                    required
+                    style={{ fontSize: '16px', padding: '8px', width: '210px' }}
                 />
                 <br />
                 <br />
@@ -220,22 +220,32 @@ const EditDog = () => {
                 <br />
                 {favFoods.map(food => {
                     return (
-                        <Box>
-                            <TextField
-                                type="text"
-                                label="food description"
-                                value={food.description}
-                                onChange={handleNotesChange}
-                                style={{ fontSize: '16px', padding: '8px', width: '200px' }}
-                                required
-                            />
-                            <Button onClick={() => handleDelete(dog.id, food.id)}
-                                aria-label="delete">Delete</Button>
-                        </Box>
+                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                        <TextField
+                          type="text"
+                          label="food description"
+                          value={food.description}
+                          onChange={handleFoodDescriptionChange}
+                          style={{ fontSize: '16px', padding: '8px', width: '200px' }}
+                        />
+                        <Button
+                          style={{ backgroundColor: "#00acb0", color: 'white', padding: '15px' }}
+                          onClick={() => handleDelete(dog.id, food.id)}
+                          aria-label="delete"
+                        >
+                          Delete
+                        </Button>
+                      </Box>
                     )
                 })}
-                <Button type="submit" variant="contained" color="primary">Update Dog</Button>
+                <Button type="submit" variant="contained" style={{backgroundColor: "#00acb0", margin: '10px'}}>Update Dog</Button>
+                <Link to="/dogs/1" style={{ textDecoration: 'none' }}>
+                <Button variant="contained" style={{ backgroundColor: "#00acb0" }}>
+                    Dogs Details
+                </Button>
+            </Link>
             </form>
+            </Box>
         </div>
     );
 };

@@ -123,11 +123,11 @@ function DogsDetail() {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <Button variant="contained" color="primary" onClick={handleEdit} style={{ paddingBottom: '60px' }}>
+            <Button variant="contained" color="primary" onClick={handleEdit} style={{ paddingBottom: '50px', backgroundColor: "#00acb0" }}>
                 Edit
             </Button>
             <Link to="/dangerousFoods" style={{ textDecoration: 'none' }}>
-                <Button variant="contained" color="primary" style={{ paddingBottom: '60px' }}>
+                <Button variant="contained"  style={{ paddingBottom: '50px', backgroundColor: "#00acb0"}}>
                     Dangerous Foods
                 </Button>
             </Link>

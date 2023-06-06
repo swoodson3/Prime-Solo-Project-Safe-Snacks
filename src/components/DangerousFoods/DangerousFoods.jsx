@@ -166,7 +166,7 @@ const DangerousFoods = () => {
                 ))}
             </List>
             <Link to="/dangerousPlants" style={{ textDecoration: 'none' }}>
-                <Button variant="contained" color="primary" style={{ paddingBottom: '60px' }}>
+                <Button variant="contained" color="primary" style={{ paddingBottom: '40px', backgroundColor: "#00acb0" }}>
                     Dangerous Plants
                 </Button>
             </Link>
