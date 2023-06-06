@@ -16,6 +16,7 @@ import {
 } from '@mui/material';
 import { Delete as DeleteIcon, ExpandMore as ExpandMoreIcon, ExpandLess as ExpandLessIcon } from '@mui/icons-material';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
+import { Link } from 'react-router-dom';
 
 
 
@@ -164,6 +165,11 @@ const DangerousFoods = () => {
                     </List>
                 ))}
             </List>
+            <Link to="/dangerousPlants" style={{ textDecoration: 'none' }}>
+                <Button variant="contained" color="primary" style={{ paddingBottom: '60px' }}>
+                    Dangerous Plants
+                </Button>
+            </Link>
         </div>
 
     );

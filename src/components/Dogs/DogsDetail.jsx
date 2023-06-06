@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams, Link} from 'react-router-dom';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TextField } from '@mui/material';
-import { Favorite } from '@mui/icons-material';
 import { Typography } from '@mui/material';
 const luxon = require('luxon');
 const dateTime = luxon.DateTime;
@@ -19,10 +18,6 @@ function DogsDetail() {
     const food = useSelector((store) => store.food);
     const dog = dogs.find((dog) => dog.id === Number(id));
     const history = useHistory();
-    // const [description, setDescription] = useState('');
-    // const [favorite, setFavorite] = useState(false);
-    // const [notes, setNotes] = useState('');
-    // const [newFoodDescription, setNewFoodDescription] = useState('')
 
 
     // Fetch dogs data when the component mounts
@@ -61,23 +56,6 @@ function DogsDetail() {
         history.push(`/dogs/${dog.id}/edit`); // Navigate to the edit dog page
     };
 
-    // const handleAddFoods = () => {
-    //     const newFood = {
-    //         description: description,
-    //         favorite: favorite,
-    //         notes: notes,
-    //     };
-    //     dispatch({ type: 'ADD_FOOD', payload: newFood });
-
-    //     // Clear the form fields
-    //     setDescription('');
-    //     setFavorite(false);
-    //     setNotes('');
-    // };
-
-    // const handleFoodDescriptionChange = (event) => {
-    //     setNewFoodDescription(event.target.value);
-    //   };
 
     return (
         <div>
@@ -107,10 +85,10 @@ function DogsDetail() {
                             <TableCell style={{ fontSize: '20px', textAlign: 'center', width: '800px'  }}>Gender</TableCell>
                             <TableCell style={{ fontSize: '20px', textAlign: 'center', width: '800px'  }}>{dog.gender}</TableCell>
                         </TableRow>
-                        <TableRow>
+                        {/* <TableRow>
                             <TableCell style={{ fontSize: '20px', textAlign: 'center', width: '800px'  }}>Notes</TableCell>
                             <TableCell style={{ fontSize: '20px', textAlign: 'center', width: '800px'  }}>{dog.notes}</TableCell>
-                        </TableRow>
+                        </TableRow> */}
                     </TableBody>
                 </Table>
             </TableContainer>
@@ -136,6 +114,10 @@ function DogsDetail() {
                                         )}
                                     </TableCell>
                                 </TableRow>
+                                <TableRow>
+                            <TableCell style={{ fontSize: '20px', textAlign: 'center', width: '800px'  }}>Notes</TableCell>
+                            <TableCell style={{ fontSize: '20px', textAlign: 'center', width: '800px'  }}>{foodItem.notes}</TableCell>
+                        </TableRow>
                             </React.Fragment>
                         ))}
                     </TableBody>
@@ -144,6 +126,11 @@ function DogsDetail() {
             <Button variant="contained" color="primary" onClick={handleEdit} style={{ paddingBottom: '60px' }}>
                 Edit
             </Button>
+            <Link to="/dangerousFoods" style={{ textDecoration: 'none' }}>
+                <Button variant="contained" color="primary" style={{ paddingBottom: '60px' }}>
+                    Dangerous Foods
+                </Button>
+            </Link>
         </div>
     );
 }

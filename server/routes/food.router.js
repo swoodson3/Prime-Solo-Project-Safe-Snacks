@@ -7,7 +7,6 @@ router.get('/', (req, res) => {
     const queryText = `SELECT * FROM "food" ORDER BY "id" ASC;`;
     pool.query(queryText)
         .then(result => {
-            // console.log('Food query result:', result.rows);
             res.send(result.rows);
         })
         .catch(error => {
@@ -19,11 +18,9 @@ router.get('/', (req, res) => {
 // GET route to retrieve single food options
 router.get('/:id', (req, res) => {
     const foodId = req.params.id
-    const queryText = `SELECT * FROM "food" WHERE "dog_id" = $1 `;
-    
+    const queryText = `SELECT * FROM "food" WHERE "dog_id" = $1 `; 
     pool.query(queryText, [foodId])
         .then(result => {
-            // console.log('Food query result:', result.rows);
             res.send(result.rows);
         })
         .catch(error => {
