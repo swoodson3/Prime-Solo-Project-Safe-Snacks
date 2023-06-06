@@ -82,7 +82,7 @@ function DogsDetail() {
     return (
         <div>
             <h1 style={{ textAlign: 'center' }}>Dog Details</h1>
-            <TableContainer component={Paper} >
+            <TableContainer component={Paper} style={{ paddingBottom: '60px' }} >
                 <Table>
                     <TableHead>
                     </TableHead>
@@ -115,7 +115,7 @@ function DogsDetail() {
                 </Table>
             </TableContainer>
             <h1 style={{ textAlign: 'center', marginTop: '20px' }}>Foods</h1>
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} style={{ paddingBottom: '60px' }}>
                 <Table>
                     <TableHead>
                     </TableHead>
@@ -141,7 +141,7 @@ function DogsDetail() {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <Button variant="contained" color="primary" onClick={handleEdit}>
+            <Button variant="contained" color="primary" onClick={handleEdit} style={{ paddingBottom: '60px' }}>
                 Edit
             </Button>
         </div>

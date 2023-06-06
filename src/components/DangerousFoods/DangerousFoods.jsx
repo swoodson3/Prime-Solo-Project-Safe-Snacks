@@ -126,7 +126,7 @@ const DangerousFoods = () => {
                     Add Food
                 </Button>
             </Box>
-            <List>
+            <List style={{ paddingBottom: '60px' }}>
                 {dangerousFoods.map((food) => (
                     <List key={food.id} >
                         <Card sx={{ width: '100%' }}>

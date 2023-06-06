@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import { Button, TextField, MenuItem } from '@mui/material';
+import { Button, TextField, MenuItem, Box} from '@mui/material';
 
 const AddDog = () => {
   const dispatch = useDispatch();
@@ -21,8 +21,6 @@ const AddDog = () => {
 
   useEffect(() => {
     console.log('Inside useEffect');
-    // dispatch({ type: 'FETCH_DOGS' })
-    // dispatch({ type: 'FETCH_FOOD' });
   }, [dispatch]);
 
   const handleNameChange = (event) => {
@@ -100,6 +98,7 @@ const AddDog = () => {
   return (
     <div>
       <h1 style={{ textAlign: "center" }}>Add a Dog</h1>
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
       <form onSubmit={addDog}>
         <TextField
           type="text"
@@ -170,7 +169,7 @@ const AddDog = () => {
           style={{ fontSize: '16px', padding: '8px', width: '200px' }}
           required
         />
-        <div style={{ display: 'flex', justifyContent: 'flex-end', marginRight: '60px'}}>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', marginRight: '9px'}}>
         <Button
           type="submit"
           variant="contained"
@@ -180,7 +179,7 @@ const AddDog = () => {
             fontSize: '16px',
             padding: '5px',
             width: '200px',
-            marginRight: '10px'
+            marginRight: '15px'
           }}
           className="btn"
         >
@@ -193,7 +192,7 @@ const AddDog = () => {
             color: "#fff",
             fontSize: '16px',
             padding: '5px',
-            width: '200px'
+            width: '200px',
           }}
           className="btn"
           onClick={handleReturn}
@@ -202,6 +201,7 @@ const AddDog = () => {
         </Button>
         </div>
       </form>
+      </Box>
     </div>
   );
 }

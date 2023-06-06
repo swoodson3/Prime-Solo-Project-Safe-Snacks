@@ -9,15 +9,18 @@ import LocalFloristIcon from '@mui/icons-material/LocalFlorist';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import EmojiFoodBeverageIcon from '@mui/icons-material/EmojiFoodBeverage';
 
+
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
   return (
-    <div className="container">
-      <h1 style={{ textAlign: "center" }}> Safe Snacks </h1>
+    <div className="container" style={{ textAlign: "center" }}>
+      <h1> Safe Snacks </h1>
     <br />
       <h2>Welcome, {user.username}!</h2>
-      {/* <p>Your ID is: {user.id}</p> */}
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '1rem' }}>
+        <img src="/avatar/avatar.png" alt="Avatar" style={{ borderRadius: '50%', width: '200px', height: '200px' }} />
+      </div>
     <br />
     <br />
       <h1 style={{ textAlign: "center" }}> Important Safety Information for Dogs</h1>
@@ -40,7 +43,7 @@ function UserPage() {
       </div>
 
       {/* Add Dog  */}
-      <Grid container spacing={2} justifyContent="center">
+      <Grid container spacing={2} justifyContent="center" style={{ paddingBottom: '60px' }} >
         <Grid item>
           <Link to="/newDog">
             <Button variant="contained" style={{ backgroundColor: "#00acb0", color: "#fff" }} className="btn">
@@ -49,27 +52,6 @@ function UserPage() {
           </Link>
         </Grid>
       </Grid>
-
-
-      {/* Search Bar */}
-      {/* <input type="text" placeholder="Search" />
-      <button>Search</button> */}
-
-      {/* Filter Button */}
-      {/* <input type="text" placeholder="Filter" />
-      <button>Filter</button> */}
-
-      {/* Favorites */}
-      {/* <h3>Favorites:</h3> */}
-      {/* Display favorite treats here */}
-
-      {/* Featured Treats */}
-      {/* <h3>Featured Treats:</h3> */}
-      {/* Display featured treats here */}
-
-      {/* Recent Activity Feed */}
-      {/* <h3>Recent Activity:</h3> */}
-      {/* Display recent activity feed here */}
 
     </div>
   );

@@ -38,6 +38,7 @@ function DogsList() {
   };
 
 
+  
     return (
         <div>
             <h1 style={{ textAlign: 'center' }}>Dogs List</h1>
