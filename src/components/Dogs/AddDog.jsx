@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import axios from 'axios';
 import { Button, TextField, MenuItem, Box} from '@mui/material';
 
@@ -77,11 +77,6 @@ const AddDog = () => {
         console.log(`Error in POST: ${error}`);
         alert(`Failed to add dog!`);
       });
-  };
-
-  const handleReturn = () => {
-    clearForm();
-    history.push('/'); // Redirect to the home page
   };
 
   const clearForm = () => {
@@ -185,20 +180,21 @@ const AddDog = () => {
         >
           Add Dog
         </Button>
-        <Button
-          variant="contained"
-          style={{
-            backgroundColor: "#00acb0",
-            color: "#fff",
-            fontSize: '16px',
-            padding: '5px',
-            width: '200px',
-          }}
-          className="btn"
-          onClick={handleReturn}
-        >
-          Return Home
-        </Button>
+        <Link to="/dogsList" style={{ textDecoration: 'none' }}>
+              <Button
+                variant="contained"
+                style={{
+                  backgroundColor: "#00acb0",
+                  color: "#fff",
+                  fontSize: '16px',
+                  padding: '5px',
+                  width: '200px',
+                }}
+                className="btn"
+              >
+                Go to Dogs List
+              </Button>
+            </Link>
         </div>
       </form>
       </Box>

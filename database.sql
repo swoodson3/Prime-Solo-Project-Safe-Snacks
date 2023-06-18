@@ -91,6 +91,8 @@ VALUES
     ('Autumn crocus', 'Autumn crocus plants contain colchicine, which can cause symptoms such as drooling, vomiting, diarrhea, abdominal pain, organ damage, and bone marrow suppression in dogs.', 'Drooling, vomiting, diarrhea, abdominal pain, organ damage, bone marrow suppression'),
     ('Yew', 'Yew is highly toxic to dogs and can cause symptoms such as difficulty breathing, trembling, dilated pupils, seizures, and in severe cases, cardiac arrest or death.', 'Difficulty breathing, trembling, dilated pupils, seizures, cardiac arrest, death'),
     ('Aloe vera', 'While aloe vera is generally safe for topical use, ingestion of aloe vera plants can cause gastrointestinal upset, vomiting, diarrhea, tremors, and in rare cases, changes in urine color or kidney damage in dogs.', 'Gastrointestinal upset, vomiting, diarrhea, tremors, changes in urine color, kidney damage');
+
+    
 CREATE TABLE 
 "user" (
 	"id" SERIAL PRIMARY KEY,
