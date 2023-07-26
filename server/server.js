@@ -11,8 +11,8 @@ const passport = require('./strategies/user.strategy');
 // Route includes
 const userRouter = require('./routes/user.router');
 const dogsRouter = require('./routes/dogs.router');
-const dangerousFoodsRouter = require('./routes/dangerousFoods.router');
-const dangerousPlantsRouter = require('./routes/dangerousPlants.router');
+const dangerousFoodsRouter = require('./routes/dangerousfoods.router');
+const dangerousPlantsRouter = require('./routes/dangerousplants.router');
 const foodRouter = require('./routes/food.router');
 
 
