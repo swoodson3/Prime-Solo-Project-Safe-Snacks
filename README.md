@@ -40,7 +40,6 @@ Technology Stack
   
 ## Setup Instructions
 Run npm install.
-Sign up for AWS and create an S3 bucket named "examplebucket" along with an IAM user.
 Create a .env file at the project's root and include the following lines:
 make file
 Copy code
