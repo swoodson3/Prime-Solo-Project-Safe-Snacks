@@ -1,123 +1,99 @@
+# Safe Snacks Pet App
 
-# Prime Solo Project Starting Repo
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
+## About The Project
+The Safe Snacks application is designed to assist pet owners in making informed choices about the treats they give to their beloved dogs. This app offers a user-friendly platform to access a vast database of safe and potentially harmful foods and plants for dogs. Not only can users discover what treats are suitable for their furry companions, but they can also build a customized list of their dog's favorite snacks for quick reference. The app aims to ensure the safety and satisfaction of dogs by providing essential information to their owners.
 
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
+## Purpose of the Application
+The Safe Snacks app addresses the genuine concern of pet owners who want to offer their dogs treats that are both delicious and safe. By providing a comprehensive database of foods and plants, the app assists users in making well-informed decisions, reducing the risk of inadvertently giving their pets harmful treats.
 
-## Use the Template for This Repository (Don't Clone)
+The personalized list feature of the app allows users to curate a collection of their dog's preferred snacks. This not only enhances convenience but also reinforces the bond between pets and their owners by ensuring a constant supply of treats that both parties enjoy.
 
-- Don't Fork or Clone. Instead, click the `Use this Template` button, and make a copy to your personal account. Make the project `PUBLIC`!
+## Key Features
+Extensive Database: Access a wealth of information about foods and plants that are safe for dogs, as well as those that pose potential risks.
 
+Personalized List: Create a customized list of your dog's favorite snacks, making treat selection a breeze.
+
+User-Friendly Interface: Enjoy a seamless and intuitive experience while navigating the app and discovering new treats.
 
 ## Prerequisites
+Before you begin, ensure that the following software is installed on your computer:
 
-Before you get started, make sure you have the following software installed on your computer:
 
 - [Node.js](https://nodejs.org/en/)
 - [PostrgeSQL](https://www.postgresql.org/)
 - [Nodemon](https://nodemon.io/)
 
-## Create database and table
 
-Create a new database called `prime_app` and create a `user` table:
 
-```SQL
-CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
-);
-```
+Technology Stack
+- [![React][react.js]][react-url]
+- [![Redux][redux.js]][redux-url]
+- [![Redux-Saga][redux-saga.js]][redux-saga-url]
+- [![PostgreSQL][postgresql]][postgresql-url]
+- [![Material-UI][material-ui]][material-ui-url]
+- [![Express][express.js]][express-url]
+- [![Node][node.js]][node-url]
+- [![React-Router][react-router]][react-router-url]
+- [![Heroku][heroku]][heroku-url]
+- [![NPM][npm]][npm-url]
 
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
+  
+## Setup Instructions
+Run npm install.
+Sign up for AWS and create an S3 bucket named "examplebucket" along with an IAM user.
+Create a .env file at the project's root and include the following lines:
+make file
+Copy code
+SERVER_SESSION_SECRET=superDuperSecret
+AWS_ACCESS_KEY_ID=EnterYourAccessKeyID
+AWS_SECRET_ACCESS_KEY=EnterYourSecretAccessKey
+AWS_REGION=EnterYourRegion
+Make sure to replace superDuperSecret with a strong, random string for enhanced security.
 
-## Development Setup Instructions
+Start PostgreSQL if it's not running using brew services start postgresql.
+Run npm run server.
+Run npm run client.
+Open your web browser and go to localhost:3000.
+Production Build
+Before deploying to Heroku, create a production build using npm run build in the terminal. This will generate a build folder containing the code that Heroku will host. You can preview the build with npm start.
 
-- Test
+Start PostgreSQL if needed: brew services start postgresql.
+Run npm start.
+Visit localhost:5042 in your browser to preview the production build.
+Deployment
+Create a new Heroku project.
+Link the Heroku project to the GitHub repository.
+Set up a Heroku Postgres database and connect it from Postico.
+Create required tables.
+Add an environment variable for SERVER_SESSION_SECRET for security.
+In the deployment section, select manual deploy.
 
-- Run `npm install`
-- Create a `.env` file at the root of the project and paste this line into the file:
-  ```
-  SERVER_SESSION_SECRET=superDuperSecret 
-  ```
-  While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm run server`
-- Run `npm run client`
-- Navigate to `localhost:3000`
+##Conclusion
+Introducing Safe Snacks, the ultimate app for pet owners who prioritize their dog's well-being. With Safe Snacks, you can confidently choose treats, knowing they're safe for your furry friend. Experience peace of mind and keep your dog satisfied with Safe Snacks!
 
-## Debugging
 
-To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run client`. Start the debugging server by selecting the Debug button.
 
-![VSCode Toolbar](documentation/images/vscode-toolbar.png)
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-Then make sure `Launch Program` is selected from the dropdown, then click the green play arrow.
 
-![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
-
-## Testing Routes with Postman
-
-To use Postman with this repo, you will need to set up requests in Postman to register a user and login a user at a minimum.
-
-Keep in mind that once you using the login route, Postman will manage your session cookie for you just like a browser, ensuring it is sent with each subsequent request. If you delete the `localhost` cookie in Postman, it will effectively log you out.
-
-1. Start the server - `npm run server`
-2. Import the sample routes JSON file [v2](./PostmanPrimeSoloRoutesv2.json) by clicking `Import` in Postman. Select the file.
-3. Click `Collections` and `Send` the following three calls in order:
-   1. `POST /api/user/register` registers a new user, see body to change username/password
-   2. `POST /api/user/login` will login a user, see body to change username/password
-   3. `GET /api/user` will get user information, by default it's not very much
-
-After running the login route above, you can try any other route you've created that requires a logged in user!
-
-## Production Build
-
-Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
-
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm start`
-- Navigate to `localhost:5000`
-
-## Lay of the Land
-
-There are a few videos linked below that show a walkthrough the client and sever setup to help acclimatize to the boilerplate. Please take some time to watch the videos in order to get a better understanding of what the boilerplate is like.
-
-- [Initial Set](https://vimeo.com/453297271)
-- [Server Walkthrough](https://vimeo.com/453297212)
-- [Client Walkthrough](https://vimeo.com/453297124)
-
-Directory Structure:
-
-- `src/` contains the React application
-- `public/` contains static assets for the client-side
-- `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
-- `server/` contains the Express App
-
-This code is also heavily commented. We recommend reading through the comments, getting a lay of the land, and becoming comfortable with how the code works before you start making too many changes. If you're wondering where to start, consider reading through component file comments in the following order:
-
-- src/components
-  - App/App
-  - Footer/Footer
-  - Nav/Nav
-  - AboutPage/AboutPage
-  - InfoPage/InfoPage
-  - UserPage/UserPage
-  - LoginPage/LoginPage
-  - RegisterPage/RegisterPage
-  - LogOutButton/LogOutButton
-  - ProtectedRoute/ProtectedRoute
-
-## Deployment
-
-1. Create a new Heroku project
-1. Link the Heroku project to the project GitHub Repo
-1. Create an Heroku Postgres database
-1. Connect to the Heroku Postgres database from Postico
-1. Create the necessary tables
-1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
-1. In the deploy section, select manual deploy
-
-## Update Documentation
-
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
+[react.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[react-url]: https://reactjs.org/
+[redux.js]: https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white
+[redux-url]: https://redux.js.org/
+[postgresql]: https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white
+[postgresql-url]: https://www.postgresql.org/
+[redux-saga.js]: https://img.shields.io/badge/Redux%20saga-86D46B?style=for-the-badge&logo=redux%20saga&logoColor=999999
+[redux-saga-url]: https://redux-saga.js.org/
+[material-ui]: https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white
+[material-ui-url]: https://mui.com/
+[heroku]: https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white
+[heroku-url]: https://heroku.com
+[node.js]: https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white
+[node-url]: https://nodejs.org/en/
+[express.js]: https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white
+[express-url]: https://expressjs.com/
+[npm]: https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white
+[npm-url]: https://www.npmjs.com
+[react-router]: https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white
+[react-router-url]: https://react-router.js.org/
