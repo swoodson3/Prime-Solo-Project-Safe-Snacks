@@ -71,6 +71,8 @@ In the deployment section, select manual deploy.
 ## Conclusion
 Introducing Safe Snacks, the ultimate app for pet owners who prioritize their dog's well-being. With Safe Snacks, you can confidently choose treats, knowing they're safe for your furry friend. Experience peace of mind and keep your dog satisfied with Safe Snacks!
 
+Created by Seth Woodson. 
+
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
